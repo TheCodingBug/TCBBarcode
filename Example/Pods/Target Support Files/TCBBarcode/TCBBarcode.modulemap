@@ -1,0 +1,6 @@
+framework module TCBBarcode {
+  umbrella header "TCBBarcode-umbrella.h"
+
+  export *
+  module * { export * }
+}

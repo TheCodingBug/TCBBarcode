@@ -1,0 +1,6 @@
+framework module Pods_TCBBarcode_Tests {
+  umbrella header "Pods-TCBBarcode_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

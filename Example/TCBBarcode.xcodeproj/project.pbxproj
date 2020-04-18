@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		39AC715F01A73BE7240720B5 /* Pods-TCBBarcode_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCBBarcode_Example.debug.xcconfig"; path = "Target Support Files/Pods-TCBBarcode_Example/Pods-TCBBarcode_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		54D4AEADD9CD3590D6BDE0AD /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		54D4AEADD9CD3590D6BDE0AD /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* TCBBarcode_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCBBarcode_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,10 +42,10 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6BDB27BE1E09F4378382A743 /* Pods-TCBBarcode_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCBBarcode_Example.release.xcconfig"; path = "Target Support Files/Pods-TCBBarcode_Example/Pods-TCBBarcode_Example.release.xcconfig"; sourceTree = "<group>"; };
 		74B602F42120AFAACEF364BC /* Pods_TCBBarcode_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TCBBarcode_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		85D5E900B01CC8D81EF886F2 /* TCBBarcode.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = TCBBarcode.podspec; path = ../TCBBarcode.podspec; sourceTree = "<group>"; };
+		85D5E900B01CC8D81EF886F2 /* TCBBarcode.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TCBBarcode.podspec; path = ../TCBBarcode.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9A2D5CD7629F871D43906D99 /* Pods-TCBBarcode_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCBBarcode_Tests.release.xcconfig"; path = "Target Support Files/Pods-TCBBarcode_Tests/Pods-TCBBarcode_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AB8AED4AB2900DC4661E605C /* Pods-TCBBarcode_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCBBarcode_Tests.debug.xcconfig"; path = "Target Support Files/Pods-TCBBarcode_Tests/Pods-TCBBarcode_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		B1EDD469EE41790C8C834E7D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		B1EDD469EE41790C8C834E7D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C9B10218366B92778C208B0A /* Pods_TCBBarcode_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TCBBarcode_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -156,7 +156,6 @@
 				AB8AED4AB2900DC4661E605C /* Pods-TCBBarcode_Tests.debug.xcconfig */,
 				9A2D5CD7629F871D43906D99 /* Pods-TCBBarcode_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -227,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);

@@ -1,0 +1,22 @@
+{
+  "name": "TCBBarcode",
+  "version": "0.1.0",
+  "summary": "A short description of TCBBarcode.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/nferocious76/TCBBarcode",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "nferocious76": "nferocious76@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/nferocious76/TCBBarcode.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "TCBBarcode/Classes/**/*"
+}
