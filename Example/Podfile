@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TCBBarcode_Example' do
+  pod 'TCBBarcode', :path => '../'
+
+  target 'TCBBarcode_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
