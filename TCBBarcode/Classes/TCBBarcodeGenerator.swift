@@ -148,9 +148,7 @@ public class TCBBarcodeGenerator: NSObject {
             return filter(type: type, parameters: params)
             
         default:
-            let params = ["inputMessage": data]
-
-            return filter(type: type, parameters: params)
+            return nil
         }
     }
     
