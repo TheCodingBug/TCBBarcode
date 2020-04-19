@@ -26,4 +26,5 @@ nferocious76, nferocious76@gmail.com
 
 ## License
 
-TCBBarcode is available under the MIT license. See the LICENSE file for more info.
+TCBBarcode is available under the MIT license. See the [LICENSE]() file for more info.
+AutoCompleteTextField is available under the MIT license. See the [LICENSE](https://github.com/TheCodingBug/TCBBarcode/blob/master/LICENSE) file for more info.
