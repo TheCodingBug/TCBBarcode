@@ -74,7 +74,7 @@ public class TCBBarcodeScannerView: UIView {
         delegate = d
         scanner = TCBBarcodeScanner(supportedTypes: types, playSoundOnSuccess: play, delegate: self)
         
-        let previewFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height - TCBBarcodeScannerView.codeLblHeight)
+        let previewFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height - TCBBarcodeScannerView.codeLblHeight)
         if let previewLayer = scanner.previewLayer(withFrame: previewFrame) {
             previewView.layer.addSublayer(previewLayer)
         }else{
@@ -193,6 +193,11 @@ extension TCBBarcodeScannerView: TCBBarcodeScannerDelegate {
 // MARK: - Controls
 
 extension TCBBarcodeScannerView {
+    
+    public func updateScanArea(frame: CGRect) {
+
+        scanner.updateScanArea(frame: frame)
+    }
     
     public func scan() {
         resetDetectView()

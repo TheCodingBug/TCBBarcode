@@ -58,6 +58,14 @@ public class TCBBarcodeScanner: NSObject {
     public var supportedTypes: [AVMetadataObject.ObjectType] = []
     public var playSound: Bool = true
     
+    public var isRunning: Bool {
+        if let _ = session {
+            return session.isRunning
+        }
+        
+        return false
+    }
+    
     // MARK: - Initializers
     
     private override init() {
@@ -113,30 +121,38 @@ public class TCBBarcodeScanner: NSObject {
     }
 }
 
-// MARK: - Actions
+// MARK: - Controls
 
 extension TCBBarcodeScanner {
-    
-    public var isRunning: Bool {
-        if let _ = session {
-            return session.isRunning
-        }
-        
-        return false
-    }
     
     public func previewLayer(withFrame frame: CGRect, videoGravity: AVLayerVideoGravity = .resizeAspectFill) -> AVCaptureVideoPreviewLayer! {
         
         guard let session = session, session.inputs.count > 0 else { return nil } // no active session
+        guard let metadataOutput = session.outputs.first as? AVCaptureMetadataOutput else { return nil }
 
         if previewLayer == nil { // create preview layer
             previewLayer = AVCaptureVideoPreviewLayer(session: session)
         }
-        
-        previewLayer.videoGravity = videoGravity
+                
         previewLayer.frame = frame
+        previewLayer.videoGravity = videoGravity
+
+        // add point of interest
+        let rectOfInterest = previewLayer.metadataOutputRectConverted(fromLayerRect: frame)
+        metadataOutput.rectOfInterest = rectOfInterest
         
         return previewLayer
+    }
+    
+    /// Scan area should be relative to preview frame
+    public func updateScanArea(frame: CGRect) {
+        
+        guard let session = session, session.inputs.count > 0 else { return } // no active session
+        guard let metadataOutput = session.outputs.first as? AVCaptureMetadataOutput else { return }
+        
+        // add point of interest
+        let rectOfInterest = previewLayer.metadataOutputRectConverted(fromLayerRect: frame)
+        metadataOutput.rectOfInterest = rectOfInterest
     }
     
     /// Start session and start scanning
