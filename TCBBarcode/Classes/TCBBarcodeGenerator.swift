@@ -5,6 +5,8 @@
 //  Created by Neil Francis Hipona on 4/18/20.
 //
 
+// https://help.accusoft.com/BarcodeXpressiOS/v12.1/html/barcodetypes.html
+
 import Foundation
 
 public class TCBBarcodeGenerator: NSObject {
