@@ -18,6 +18,8 @@ public protocol TCBBarcodeScannerDelegate: NSObjectProtocol {
 
 public class TCBBarcodeScanner: NSObject {
     
+    // MARK: - Declarations
+    
     internal var session: AVCaptureSession!
     internal var previewLayer: AVCaptureVideoPreviewLayer!
     
@@ -45,6 +47,8 @@ public class TCBBarcodeScanner: NSObject {
     public var supportedTypes: [AVMetadataObject.ObjectType] = []
     public var playSound: Bool = true
     
+    // MARK: - Initializers
+    
     private override init() {
         super.init()
     }
@@ -55,12 +59,12 @@ public class TCBBarcodeScanner: NSObject {
         supportedTypes = types
         playSound = play
         delegate = d
+        
+        setupSession()
     }
     
     internal func setupSession() {
-        
-        session = AVCaptureSession()
-        
+
         guard let captureDevice = AVCaptureDevice.default(for: .video) else {
             let error = TCBBarcodeError.createCustomError(errorMessage: "Capture device not found")
             delegate.scanner(scanner: self, setupDidFail: error)
@@ -73,6 +77,7 @@ public class TCBBarcodeScanner: NSObject {
             return
         }
         
+        session = AVCaptureSession()
         session.beginConfiguration()
         
         if session.canAddInput(inputDevice) {
@@ -111,7 +116,7 @@ extension TCBBarcodeScanner {
     
     public func previewLayer(withFrame frame: CGRect, videoGravity: AVLayerVideoGravity = .resizeAspectFill) -> AVCaptureVideoPreviewLayer! {
         
-        guard let _ = session else { return nil } // no active session
+        guard let session = session, session.inputs.count > 0 else { return nil } // no active session
 
         if previewLayer == nil { // create preview layer
             previewLayer = AVCaptureVideoPreviewLayer(session: session)
@@ -123,14 +128,24 @@ extension TCBBarcodeScanner {
         return previewLayer
     }
     
-    public func run() {
+    /// Start session and start scanning
+    public func start() {
         
         if let _ = session {
             session.startRunning()
         }
     }
     
+    /// Stop scanning
     public func stop() {
+        
+        if let _ = session {
+            session.stopRunning()
+        }
+    }
+    
+    /// Stop scanning and removes session
+    public func purge() {
         
         if let _ = session {
             session.stopRunning()

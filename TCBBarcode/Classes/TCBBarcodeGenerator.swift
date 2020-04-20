@@ -11,6 +11,10 @@ import Foundation
 
 public class TCBBarcodeGenerator: NSObject {
     
+    // MARK: - Declarations
+    
+    private var transform: CGAffineTransform = CGAffineTransform(scaleX: UIScreen.main.scale, y: UIScreen.main.scale)
+    
     public enum TCBBarcodeGeneratorType {
         
         public enum QRCodeLevel: String {
@@ -77,8 +81,16 @@ public class TCBBarcodeGenerator: NSObject {
         }
     }
     
-    public override init() {
+    // MARK: - Initializers
+    
+    private override init() {
         super.init()
+    }
+    
+    convenience public init(transform t: CGAffineTransform = CGAffineTransform(scaleX: UIScreen.main.scale, y: UIScreen.main.scale)) {
+        self.init()
+        
+        transform = t
     }
     
     public func generateCode(forType type: TCBBarcodeGeneratorType, source: String) -> UIImage? {
@@ -155,10 +167,11 @@ public class TCBBarcodeGenerator: NSObject {
     }
     
     internal func filter(type: TCBBarcodeGeneratorType, parameters params: [String : Any]?) -> CIImage? {
+
+        let filter = CIFilter(name: type.description, parameters: params)
+        guard let output = filter?.outputImage else { return nil }
+        let scaled = output.transformed(by: transform, highQualityDownsample: true)
         
-        let filter = CIFilter(name: type.description, withInputParameters: params)
-        let output = filter?.outputImage
-        
-        return output
+        return scaled
     }
 }
