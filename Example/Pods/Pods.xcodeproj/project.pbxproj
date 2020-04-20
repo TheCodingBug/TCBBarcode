@@ -13,7 +13,6 @@
 		3C5E8E4601220C8667641507E3FF9169 /* Pods-TCBBarcode_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED40B466F83AFF0B6878FA99A25700D /* Pods-TCBBarcode_Example-dummy.m */; };
 		48AD11DC2E5466EE5C61DC310D68F06A /* Pods-TCBBarcode_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AEED823131B613983B39D3EB3664F11D /* Pods-TCBBarcode_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F6C22DEB7A729E25661039583138AB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
-		5C6569DD2D0C3F5AE22AF994AFB8005F /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69C440E55845E48B8546AABE4796E93B /* Media.xcassets */; };
 		68C641F743C51170877EE5879BAF0084 /* TCBBarcode-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 04613F63469AA1811188D96489B47CC9 /* TCBBarcode-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F0278F6DF807C4BD570012513432053 /* Pods-TCBBarcode_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33A3A65D9AF6975F838EA74C4CEC3E9B /* Pods-TCBBarcode_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8171DFDC4CB12A314A3F52C2C5259FC6 /* TCBBarcodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A476AF1A91A0360C77E6D5B7D0EF160B /* TCBBarcodeGenerator.swift */; };
@@ -61,7 +60,6 @@
 		61AFF70009DFA1C498EE44DB6D0DF37D /* TCBBarcodeScanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TCBBarcodeScanner.swift; path = TCBBarcode/Classes/TCBBarcodeScanner.swift; sourceTree = "<group>"; };
 		624C317EAF16B5961E452FEB57C272B7 /* Pods-TCBBarcode_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TCBBarcode_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		68C492967999B23537CCAA326136AD06 /* Pods-TCBBarcode_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TCBBarcode_Tests-dummy.m"; sourceTree = "<group>"; };
-		69C440E55845E48B8546AABE4796E93B /* Media.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = TCBBarcode/Assets/Media.xcassets; sourceTree = "<group>"; };
 		6F777B05C578A4A29DAB94F6EECD59DF /* Pods-TCBBarcode_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TCBBarcode_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7C6807696D3D6D4966ED2B4291EBE256 /* TCBBarcodeError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TCBBarcodeError.swift; path = TCBBarcode/Classes/TCBBarcodeError.swift; sourceTree = "<group>"; };
 		7ED40B466F83AFF0B6878FA99A25700D /* Pods-TCBBarcode_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TCBBarcode_Example-dummy.m"; sourceTree = "<group>"; };
@@ -225,7 +223,6 @@
 		EC489A37CA78E763D64061076D9DD507 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				69C440E55845E48B8546AABE4796E93B /* Media.xcassets */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -380,7 +377,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C6569DD2D0C3F5AE22AF994AFB8005F /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
