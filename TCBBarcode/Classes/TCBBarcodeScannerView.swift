@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import NFImageView
 
 public protocol TCBBarcodeScannerViewDelegate: NSObjectProtocol {
     
@@ -17,47 +18,75 @@ public protocol TCBBarcodeScannerViewDelegate: NSObjectProtocol {
 
 public class TCBBarcodeScannerView: UIView {
     
+    @IBOutlet weak private var previewView: UIView!
+    @IBOutlet weak private var codeLbl: UILabel!
+    
     // MARK: - Declarations
+    
     fileprivate var scanner: TCBBarcodeScanner!
     
     public weak var delegate: TCBBarcodeScannerViewDelegate!
     
+    public var cornerRadius: CGFloat = 4.0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
+            previewView.layer.cornerRadius = cornerRadius
+        }
+    }
+    
     // MARK: - Initializers
     
-    private override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        self.init()
+    public class func instance(frame: CGRect, delegate: TCBBarcodeScannerViewDelegate!, supportedTypes types: [AVMetadataObject.ObjectType] = TCBBarcodeScanner.availableTypes, playSoundOnSuccess play: Bool = true) -> TCBBarcodeScannerView {
         
-    }
-    
-    override public func encode(with aCoder: NSCoder) {
+        let bundle = Bundle(for: TCBBarcodeScannerView.self)
+        let nib = UINib(nibName: "TCBBarcodeScannerView", bundle: bundle)
+        let scanner = nib.instantiate(withOwner: nil, options: nil).first as! TCBBarcodeScannerView
         
+        scanner.frame = frame
+        scanner.setup(frame: frame, delegate: delegate, supportedTypes: types, playSoundOnSuccess: play)
+        
+        return scanner
     }
     
-    convenience public init(frame: CGRect, delegate d: TCBBarcodeScannerViewDelegate!, supportedTypes types: [AVMetadataObject.ObjectType] = TCBBarcodeScanner.availableTypes, playSoundOnSuccess play: Bool = true) {
-        self.init(frame: frame)
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+
+    }
+    
+    fileprivate func setup(frame: CGRect, delegate d: TCBBarcodeScannerViewDelegate!, supportedTypes types: [AVMetadataObject.ObjectType] = TCBBarcodeScanner.availableTypes, playSoundOnSuccess play: Bool = true) {
         
         delegate = d
         scanner = TCBBarcodeScanner(supportedTypes: types, playSoundOnSuccess: play, delegate: self)
         
-        let previewFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+        let previewFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height - 30)
         if let previewLayer = scanner.previewLayer(withFrame: previewFrame) {
-            layer.addSublayer(previewLayer)
+            previewView.layer.addSublayer(previewLayer)
         }else{
             let error = TCBBarcodeError.createCustomError(errorMessage: "Scanner preview configuration failed")
             delegate.scannerView(scannerView: self, setupDidFail: error)
         }
     }
+}
+
+// MARK: - Internal Controls
+
+extension TCBBarcodeScannerView {
     
-    public override func awakeFromNib() {
-        super.awakeFromNib()
+    fileprivate func prepareView() {
         
+        clipsToBounds = true
+        previewView.clipsToBounds = true
+        
+        layer.cornerRadius = cornerRadius
+        previewView.layer.cornerRadius = cornerRadius
+        
+        codeLbl.text = ""
+        codeLbl.textAlignment = .center
+        codeLbl.textColor = .gray
     }
 }
 
+// MARK: - TCBBarcodeScannerDelegate
 
 extension TCBBarcodeScannerView: TCBBarcodeScannerDelegate {
     
@@ -68,6 +97,27 @@ extension TCBBarcodeScannerView: TCBBarcodeScannerDelegate {
     
     public func scanner(scanner: TCBBarcodeScanner, didOutputCode code: String) {
         
+        codeLbl.text = code
         delegate.scannerView(scannerView: self, didOutputCode: code)
+    }
+}
+
+// MARK: - Controls
+
+extension TCBBarcodeScannerView {
+    
+    public func scan() {
+        
+        scanner.start()
+    }
+    
+    public func preferredInterfaceOrientation() -> UIInterfaceOrientationMask {
+        
+        return .portrait
+    }
+    
+    public class func scannerFrameSizeFor(previewFrameSize size: CGSize) -> CGSize {
+        
+        return CGSize(width: size.width, height: size.height + 30)
     }
 }

@@ -24,7 +24,7 @@ public class TCBBarcodeScanner: NSObject {
     internal var previewLayer: AVCaptureVideoPreviewLayer!
     
     internal lazy var queue: DispatchQueue = {
-        DispatchQueue(label: "com.TCBBarcodeScanner.queue", qos: .userInteractive, attributes: .concurrent, autoreleaseFrequency: .workItem, target: .global())
+        DispatchQueue(label: "com.TCBBarcodeScanner.queue", qos: .userInteractive, attributes: .concurrent, autoreleaseFrequency: .workItem, target: .main)
     }()
     
     public static let availableTypes: [AVMetadataObject.ObjectType] = [
