@@ -29,15 +29,39 @@
                                     <action selector="scanButton:" destination="vCf-4r-0Df" eventType="touchUpInside" id="vku-GQ-YpL"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1U1-q5-lUG">
+                                <rect key="frame" x="20" y="512" width="335" height="32"/>
+                                <segments>
+                                    <segment title="None"/>
+                                    <segment title="Box Type"/>
+                                    <segment title="Line Type"/>
+                                </segments>
+                                <connections>
+                                    <action selector="detectTypeControl:" destination="vCf-4r-0Df" eventType="valueChanged" id="Lvx-M7-gZr"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detect Type" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJT-zK-uSj">
+                                <rect key="frame" x="20" y="486" width="335" height="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="1U1-q5-lUG" secondAttribute="trailing" constant="20" id="L7Y-Af-Auz"/>
+                            <constraint firstItem="1U1-q5-lUG" firstAttribute="top" secondItem="mJT-zK-uSj" secondAttribute="bottom" constant="8" id="Mt7-wv-so5"/>
+                            <constraint firstItem="mJT-zK-uSj" firstAttribute="leading" secondItem="hNG-Fy-pMb" secondAttribute="leading" constant="20" id="N8o-px-zfb"/>
                             <constraint firstItem="jzJ-8F-RjF" firstAttribute="top" secondItem="Jsw-1Q-Dpe" secondAttribute="bottom" constant="30" id="PhJ-kr-wHN"/>
+                            <constraint firstAttribute="trailing" secondItem="mJT-zK-uSj" secondAttribute="trailing" constant="20" id="ZIZ-GW-QqP"/>
                             <constraint firstItem="Jsw-1Q-Dpe" firstAttribute="centerX" secondItem="hNG-Fy-pMb" secondAttribute="centerX" id="iyH-d1-oyU"/>
+                            <constraint firstItem="1U1-q5-lUG" firstAttribute="leading" secondItem="hNG-Fy-pMb" secondAttribute="leading" constant="20" id="ton-fx-eu1"/>
+                            <constraint firstItem="Jsw-1Q-Dpe" firstAttribute="top" secondItem="1U1-q5-lUG" secondAttribute="bottom" constant="15" id="xaX-pL-ldH"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Scanner" id="Yl0-GZ-FQE"/>
                     <connections>
+                        <outlet property="detectTypeControl" destination="1U1-q5-lUG" id="Yx5-Ne-Xae"/>
                         <outlet property="scanButton" destination="Jsw-1Q-Dpe" id="2xP-H8-wUJ"/>
                     </connections>
                 </viewController>

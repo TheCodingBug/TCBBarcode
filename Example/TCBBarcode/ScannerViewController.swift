@@ -12,6 +12,7 @@ import TCBBarcode
 class ScannerViewController: ViewController {
     
     @IBOutlet weak var scanButton: UIButton!
+    @IBOutlet weak var detectTypeControl: UISegmentedControl!
     
     var scannerView: TCBBarcodeScannerView!
     
@@ -29,6 +30,11 @@ class ScannerViewController: ViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+    
+    @IBAction func detectTypeControl(_ sender: UISegmentedControl) {
+        
+        scannerView.detectType = TCBBarcodeScannerView.CodeDetectType(rawValue: sender.selectedSegmentIndex) ?? .default
     }
     
     @IBAction func scanButton(_ sender: Any) {
