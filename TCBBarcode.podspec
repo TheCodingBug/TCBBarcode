@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'TCBBarcode'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of TCBBarcode.'
+  s.summary          = 'TCBBarcode offers a quick way to setup a scanner and a generator for supported barcodes'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,14 +18,14 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  TCBBarcode offers a quick way to setup a scanner and a generator for supported barcodes. Configuration made easy.
                        DESC
 
-  s.homepage         = 'https://github.com/nferocious76/TCBBarcode'
+  s.homepage         = 'https://github.com/TheCodingBug/TCBBarcode'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'nferocious76' => 'nferocious76@gmail.com' }
-  s.source           = { :git => 'https://github.com/nferocious76/TCBBarcode.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/TheCodingBug/TCBBarcode.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/nferocious76'
 
   s.ios.deployment_target = '13.0'
