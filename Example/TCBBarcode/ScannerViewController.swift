@@ -20,12 +20,18 @@ class ScannerViewController: ViewController {
         super.viewDidLoad()
         
         let screenFrame = UIScreen.main.bounds
-        let previewSize = CGSize(width: screenFrame.size.width - 40, height: 300)
+        let previewSize = CGSize(width: screenFrame.width - 40, height: 300)
         let scannerSize = TCBBarcodeScannerView.scannerFrameSizeFor(previewFrameSize: previewSize)
         let scannerFrame = CGRect(x: 20, y: 80, width: scannerSize.width, height: scannerSize.height)
         
         scannerView = TCBBarcodeScannerView.instance(frame: scannerFrame, delegate: self)
         view.addSubview(scannerView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        scannerView.preparePreview()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
