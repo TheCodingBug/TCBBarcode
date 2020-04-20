@@ -23,10 +23,10 @@ public class TCBBarcodeScannerView: UIView {
     
     // MARK: - Declarations
     
-    public enum CodeDetectType {
-        case `default`
-        case box
-        case line
+    public enum CodeDetectType: Int {
+        case `default` = 0
+        case box = 1
+        case line = 2
     }
     
     fileprivate static let codeLblHeight: CGFloat = 40
@@ -100,6 +100,7 @@ extension TCBBarcodeScannerView {
         
         detectView.clipsToBounds = true
         detectView.backgroundColor = .clear
+        detectView.layer.cornerRadius = cornerRadius
         detectView.isHidden = true
         
         codeLbl.text = ""
@@ -129,7 +130,8 @@ extension TCBBarcodeScannerView {
         
         let codeBox = UIView(frame: frame)
         codeBox.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        previewView.addSubview(codeBox)
+        detectView.addSubview(codeBox)
+        detectView.isHidden = false
     }
     
     fileprivate func showLine(corners: [CGPoint]) {
@@ -146,14 +148,18 @@ extension TCBBarcodeScannerView {
         }
         
         bezierPath.close()
-        
+
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = bezierPath.cgPath
         shapeLayer.strokeColor = UIColor.orange.cgColor
         shapeLayer.lineWidth = 1
-        shapeLayer.fillColor = nil
+        shapeLayer.fillRule = .evenOdd
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.borderColor = UIColor.clear.cgColor
+        shapeLayer.borderWidth = 0
         
-        previewView.layer.addSublayer(shapeLayer)
+        detectView.layer.addSublayer(shapeLayer)
+        detectView.isHidden = false
     }
 }
 
@@ -189,8 +195,13 @@ extension TCBBarcodeScannerView: TCBBarcodeScannerDelegate {
 extension TCBBarcodeScannerView {
     
     public func scan() {
-        
+        resetDetectView()
         scanner.start()
+    }
+    
+    public func stop() {
+        resetDetectView()
+        scanner.stop()
     }
     
     public func preferredInterfaceOrientation() -> UIInterfaceOrientationMask {
