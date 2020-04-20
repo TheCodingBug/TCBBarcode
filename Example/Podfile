@@ -1,8 +1,11 @@
 use_frameworks!
 
+source 'https://github.com/CocoaPods/Specs.git' #include this if you will be referencing any public pods!
+
 target 'TCBBarcode_Example' do
   pod 'TCBBarcode', :path => '../'
-
+  #pod 'NFImageView', '~> 0.2.3'
+  
   target 'TCBBarcode_Tests' do
     inherit! :search_paths
 

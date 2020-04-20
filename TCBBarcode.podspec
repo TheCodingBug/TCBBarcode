@@ -28,9 +28,11 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/nferocious76/TCBBarcode.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/nferocious76'
 
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '13.0'
   s.swift_version = "5.0"
   s.source_files = 'TCBBarcode/Classes/**/*'
   s.resources = 'TCBBarcode/Assets/**'
     
+  # s.dependency 'NFImageView', '~> 0.2.3'
+
 end

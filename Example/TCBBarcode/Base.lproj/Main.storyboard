@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qMN-re-D67">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Scanner-->
+        <scene sceneID="A4z-bI-HnH">
+            <objects>
+                <viewController id="vCf-4r-0Df" customClass="ScannerViewController" customModule="TCBBarcode_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hdv-f7-Atu"/>
+                        <viewControllerLayoutGuide type="bottom" id="jzJ-8F-RjF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hNG-Fy-pMb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jsw-1Q-Dpe">
+                                <rect key="frame" x="137.5" y="558" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="92S-D6-3oS"/>
+                                    <constraint firstAttribute="width" constant="100" id="AHJ-HP-qmX"/>
+                                </constraints>
+                                <state key="normal" title="Scan"/>
+                                <connections>
+                                    <action selector="scanButton:" destination="vCf-4r-0Df" eventType="touchUpInside" id="vku-GQ-YpL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="jzJ-8F-RjF" firstAttribute="top" secondItem="Jsw-1Q-Dpe" secondAttribute="bottom" constant="30" id="PhJ-kr-wHN"/>
+                            <constraint firstItem="Jsw-1Q-Dpe" firstAttribute="centerX" secondItem="hNG-Fy-pMb" secondAttribute="centerX" id="iyH-d1-oyU"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Scanner" id="Yl0-GZ-FQE"/>
+                    <connections>
+                        <outlet property="scanButton" destination="Jsw-1Q-Dpe" id="2xP-H8-wUJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4nf-2h-8M4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1076" y="824"/>
+        </scene>
+        <!--Generator-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="TCBBarcode_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,7 +83,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cjg-mc-UuN">
-                                <rect key="frame" x="20" y="214.5" width="335" height="402.5"/>
+                                <rect key="frame" x="20" y="214.5" width="335" height="353.5"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -64,6 +102,7 @@
                             <constraint firstItem="gPc-fs-eKy" firstAttribute="top" secondItem="BNv-Wi-HCq" secondAttribute="bottom" constant="20" id="tXV-Yi-J9a"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Generator" id="T18-J7-KDy"/>
                     <connections>
                         <outlet property="generateBtn" destination="pCn-Fq-Hj1" id="UCh-Qj-Yei"/>
                         <outlet property="imageView" destination="cjg-mc-UuN" id="8SY-pG-inn"/>
@@ -73,7 +112,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="134"/>
+            <point key="canvasLocation" x="1076" y="133.5832083958021"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="IPw-tw-6fB">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="qMN-re-D67" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UsF-lc-SVv">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="WuQ-WG-P9q"/>
+                        <segue destination="vCf-4r-0Df" kind="relationship" relationship="viewControllers" id="FRk-Hi-Zwa"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tpn-bj-d8o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
     </scenes>
 </document>

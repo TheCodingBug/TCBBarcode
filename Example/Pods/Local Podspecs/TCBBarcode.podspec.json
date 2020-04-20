@@ -16,7 +16,10 @@
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "13.0"
   },
-  "source_files": "TCBBarcode/Classes/**/*"
+  "swift_versions": "5.0",
+  "source_files": "TCBBarcode/Classes/**/*",
+  "resources": "TCBBarcode/Assets/**",
+  "swift_version": "5.0"
 }

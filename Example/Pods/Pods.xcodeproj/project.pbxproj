@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		06A485FB7E82FE68EDC8909B69636E8E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		216242201A3BCB6D0D7C1E9E2F6CE6BD /* TCBBarcode-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C878214E354BD7A2065786D7C05AED92 /* TCBBarcode-dummy.m */; };
+		25C00A1B30DC693E0CC6E0377F5EEFAE /* TCBBarcodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6807696D3D6D4966ED2B4291EBE256 /* TCBBarcodeError.swift */; };
 		3C5E8E4601220C8667641507E3FF9169 /* Pods-TCBBarcode_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED40B466F83AFF0B6878FA99A25700D /* Pods-TCBBarcode_Example-dummy.m */; };
 		48AD11DC2E5466EE5C61DC310D68F06A /* Pods-TCBBarcode_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AEED823131B613983B39D3EB3664F11D /* Pods-TCBBarcode_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F6C22DEB7A729E25661039583138AB2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		5C6569DD2D0C3F5AE22AF994AFB8005F /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69C440E55845E48B8546AABE4796E93B /* Media.xcassets */; };
+		68C641F743C51170877EE5879BAF0084 /* TCBBarcode-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 04613F63469AA1811188D96489B47CC9 /* TCBBarcode-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F0278F6DF807C4BD570012513432053 /* Pods-TCBBarcode_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33A3A65D9AF6975F838EA74C4CEC3E9B /* Pods-TCBBarcode_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78B8166CB389C182B68F4A7294DC365B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		8171DFDC4CB12A314A3F52C2C5259FC6 /* TCBBarcodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A476AF1A91A0360C77E6D5B7D0EF160B /* TCBBarcodeGenerator.swift */; };
+		86F78EA10FD31BB68D28DC9018434815 /* TCBBarcodeScannerView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 1277DE69986771213AC617CC448DBCC1 /* TCBBarcodeScannerView.xib */; };
 		8CB1F354C657D1D8CBE6D1EDE9BE28DA /* Pods-TCBBarcode_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C492967999B23537CCAA326136AD06 /* Pods-TCBBarcode_Tests-dummy.m */; };
-		B36B83AD80A6E0FBC134D5C6F505B8DE /* TCBBarcode-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EC2A98B6691F1FF8D7F2A6A2074078 /* TCBBarcode-dummy.m */; };
-		CC64837AF58ED77B8580ECF61938DC1C /* TCBBarcode-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 85982C4427FF30D0318DF21CD001B6DF /* TCBBarcode-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F5203EFC244AC99900333B1E /* TCBBarcodeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5203EFB244AC99900333B1E /* TCBBarcodeGenerator.swift */; };
-		F5203EFE244C6CC400333B1E /* TCBBarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5203EFD244C6CC400333B1E /* TCBBarcodeScanner.swift */; };
-		F5203F00244D616200333B1E /* TCBBarcodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5203EFF244D616200333B1E /* TCBBarcodeError.swift */; };
-		F5203F02244D6F4E00333B1E /* TCBBarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5203F01244D6F4E00333B1E /* TCBBarcodeScannerView.swift */; };
+		9D2FF8945305C3F244B1997DA9D31293 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
+		A6805AEC93A06F68E325DBCDBA78AC42 /* TCBBarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A00703A8CB26A3FFDD3C86B4B26E93 /* TCBBarcodeScannerView.swift */; };
+		B10589F1AF10655A955F9CEBC60F110C /* TCBBarcodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AFF70009DFA1C498EE44DB6D0DF37D /* TCBBarcodeScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,41 +42,43 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		15C78B4433CCAB162257069C110CA6F6 /* Pods_TCBBarcode_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TCBBarcode_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04613F63469AA1811188D96489B47CC9 /* TCBBarcode-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCBBarcode-umbrella.h"; sourceTree = "<group>"; };
+		1277DE69986771213AC617CC448DBCC1 /* TCBBarcodeScannerView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = TCBBarcodeScannerView.xib; path = TCBBarcode/Classes/TCBBarcodeScannerView.xib; sourceTree = "<group>"; };
+		15C78B4433CCAB162257069C110CA6F6 /* Pods_TCBBarcode_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TCBBarcode_Example.framework; path = "Pods-TCBBarcode_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		185FE6955E5163043AE8BE8C6A0052C8 /* TCBBarcode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TCBBarcode.release.xcconfig; sourceTree = "<group>"; };
 		19BEA246ADA34BE2FCB3D6D0F8E3BD96 /* Pods-TCBBarcode_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCBBarcode_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		21B65FE9BA3916883B83E7AB5DC9AE53 /* Pods-TCBBarcode_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCBBarcode_Example.release.xcconfig"; sourceTree = "<group>"; };
+		294CE164DA52F4A1D4A51AECD472FC38 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		2E85C25B5C214DC263FE8737E98C1EFD /* TCBBarcode.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TCBBarcode.modulemap; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		33A3A65D9AF6975F838EA74C4CEC3E9B /* Pods-TCBBarcode_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TCBBarcode_Tests-umbrella.h"; sourceTree = "<group>"; };
+		345B9FC64986D4D0210DCE100135CB93 /* TCBBarcode-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCBBarcode-prefix.pch"; sourceTree = "<group>"; };
 		3BD4E4BE8B520EF225EE952324616F15 /* Pods-TCBBarcode_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TCBBarcode_Example-frameworks.sh"; sourceTree = "<group>"; };
-		4225639BE8FB7DEB5FC6541FB0A9DFF0 /* TCBBarcode.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TCBBarcode.release.xcconfig; sourceTree = "<group>"; };
 		4953E0B5DD65B0328424C6E244B5941A /* Pods-TCBBarcode_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TCBBarcode_Example.modulemap"; sourceTree = "<group>"; };
 		4A7D5F78160FA309AB02C1F3AA976AAA /* Pods-TCBBarcode_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCBBarcode_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		60BDA067066CF09EE99B51C6B6A6DB71 /* TCBBarcode-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TCBBarcode-Info.plist"; sourceTree = "<group>"; };
+		574CD08BEAE778C99D142C50DC71732F /* TCBBarcode-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TCBBarcode-Info.plist"; sourceTree = "<group>"; };
+		5BBC370435A075A39734825246C02BE1 /* TCBBarcode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TCBBarcode.debug.xcconfig; sourceTree = "<group>"; };
+		61AFF70009DFA1C498EE44DB6D0DF37D /* TCBBarcodeScanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TCBBarcodeScanner.swift; path = TCBBarcode/Classes/TCBBarcodeScanner.swift; sourceTree = "<group>"; };
 		624C317EAF16B5961E452FEB57C272B7 /* Pods-TCBBarcode_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TCBBarcode_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		68C492967999B23537CCAA326136AD06 /* Pods-TCBBarcode_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TCBBarcode_Tests-dummy.m"; sourceTree = "<group>"; };
-		68EC2A98B6691F1FF8D7F2A6A2074078 /* TCBBarcode-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TCBBarcode-dummy.m"; sourceTree = "<group>"; };
-		6BA68DA59893CC32B200F1AD9AACD68B /* TCBBarcode-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCBBarcode-prefix.pch"; sourceTree = "<group>"; };
+		69C440E55845E48B8546AABE4796E93B /* Media.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = TCBBarcode/Assets/Media.xcassets; sourceTree = "<group>"; };
 		6F777B05C578A4A29DAB94F6EECD59DF /* Pods-TCBBarcode_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TCBBarcode_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7AA2F9A88780AB14C84A28AFE0EAF8C0 /* TCBBarcode.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = TCBBarcode.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7C6807696D3D6D4966ED2B4291EBE256 /* TCBBarcodeError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TCBBarcodeError.swift; path = TCBBarcode/Classes/TCBBarcodeError.swift; sourceTree = "<group>"; };
 		7ED40B466F83AFF0B6878FA99A25700D /* Pods-TCBBarcode_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TCBBarcode_Example-dummy.m"; sourceTree = "<group>"; };
-		85982C4427FF30D0318DF21CD001B6DF /* TCBBarcode-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCBBarcode-umbrella.h"; sourceTree = "<group>"; };
-		8B51AF21619D33C176D03B1B92504FF7 /* TCBBarcode.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TCBBarcode.debug.xcconfig; sourceTree = "<group>"; };
+		87F1621C4CD4F408F7627B89BCAC0C08 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		90264462F15604A12B16BFFC3CBA77F3 /* Pods-TCBBarcode_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TCBBarcode_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		90F1FC0AEBF1A73E85EFE54DAC58832B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9B7EBEB1315ABA8EB48329E3F3D783F3 /* Pods-TCBBarcode_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TCBBarcode_Tests.modulemap"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A74562BD8D133C879503BE87EA9EC6F1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A476AF1A91A0360C77E6D5B7D0EF160B /* TCBBarcodeGenerator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TCBBarcodeGenerator.swift; path = TCBBarcode/Classes/TCBBarcodeGenerator.swift; sourceTree = "<group>"; };
+		A56D6ECE60C2CE80A47FFFA663C9021D /* TCBBarcode.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = TCBBarcode.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A9A00703A8CB26A3FFDD3C86B4B26E93 /* TCBBarcodeScannerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TCBBarcodeScannerView.swift; path = TCBBarcode/Classes/TCBBarcodeScannerView.swift; sourceTree = "<group>"; };
 		AC92583751C4ABA2A343D1AFD66C6823 /* Pods-TCBBarcode_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TCBBarcode_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		AEBC5102E12B09FDFE14E34F26C892C1 /* TCBBarcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TCBBarcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEBC5102E12B09FDFE14E34F26C892C1 /* TCBBarcode.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TCBBarcode.framework; path = TCBBarcode.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEED823131B613983B39D3EB3664F11D /* Pods-TCBBarcode_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TCBBarcode_Example-umbrella.h"; sourceTree = "<group>"; };
 		BDD2D046CA2172C3C53503E19E0D72E6 /* Pods-TCBBarcode_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TCBBarcode_Tests-Info.plist"; sourceTree = "<group>"; };
-		D1592B9B840059C87DC79425506ED76F /* Pods_TCBBarcode_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TCBBarcode_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA71DE78AB9AFB6398F06ECB8646ADF4 /* TCBBarcode.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TCBBarcode.modulemap; sourceTree = "<group>"; };
+		C878214E354BD7A2065786D7C05AED92 /* TCBBarcode-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TCBBarcode-dummy.m"; sourceTree = "<group>"; };
+		D1592B9B840059C87DC79425506ED76F /* Pods_TCBBarcode_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_TCBBarcode_Tests.framework; path = "Pods-TCBBarcode_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3CB3164C3D25B7616B7A932A7437905 /* Pods-TCBBarcode_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TCBBarcode_Example-Info.plist"; sourceTree = "<group>"; };
-		F5203EFB244AC99900333B1E /* TCBBarcodeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TCBBarcodeGenerator.swift; path = TCBBarcode/Classes/TCBBarcodeGenerator.swift; sourceTree = "<group>"; };
-		F5203EFD244C6CC400333B1E /* TCBBarcodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TCBBarcodeScanner.swift; path = TCBBarcode/Classes/TCBBarcodeScanner.swift; sourceTree = "<group>"; };
-		F5203EFF244D616200333B1E /* TCBBarcodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TCBBarcodeError.swift; path = TCBBarcode/Classes/TCBBarcodeError.swift; sourceTree = "<group>"; };
-		F5203F01244D6F4E00333B1E /* TCBBarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TCBBarcodeScannerView.swift; path = TCBBarcode/Classes/TCBBarcodeScannerView.swift; sourceTree = "<group>"; };
 		FD637D9E5D97D51E01384CE7F0C48AF0 /* Pods-TCBBarcode_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCBBarcode_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,11 +99,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A7F4158CE505CBC5D5951567DB579F46 /* Frameworks */ = {
+		BB1708AFEA7C4778075765492F26FACF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78B8166CB389C182B68F4A7294DC365B /* Foundation.framework in Frameworks */,
+				9D2FF8945305C3F244B1997DA9D31293 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +126,16 @@
 			path = "Target Support Files/Pods-TCBBarcode_Tests";
 			sourceTree = "<group>";
 		};
+		232AEE2E38284DAC6C9198A0FCC931B3 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				87F1621C4CD4F408F7627B89BCAC0C08 /* LICENSE */,
+				294CE164DA52F4A1D4A51AECD472FC38 /* README.md */,
+				A56D6ECE60C2CE80A47FFFA663C9021D /* TCBBarcode.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 		2F019D93745AA37950F656F65297DE95 /* Pods-TCBBarcode_Example */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,20 +153,25 @@
 			path = "Target Support Files/Pods-TCBBarcode_Example";
 			sourceTree = "<group>";
 		};
-		718ED7D76EB19185F615C40807F062B5 /* Pod */ = {
+		6E52A535408A5761BC7851D90E0AE2B0 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				90F1FC0AEBF1A73E85EFE54DAC58832B /* LICENSE */,
-				A74562BD8D133C879503BE87EA9EC6F1 /* README.md */,
-				7AA2F9A88780AB14C84A28AFE0EAF8C0 /* TCBBarcode.podspec */,
+				2E85C25B5C214DC263FE8737E98C1EFD /* TCBBarcode.modulemap */,
+				C878214E354BD7A2065786D7C05AED92 /* TCBBarcode-dummy.m */,
+				574CD08BEAE778C99D142C50DC71732F /* TCBBarcode-Info.plist */,
+				345B9FC64986D4D0210DCE100135CB93 /* TCBBarcode-prefix.pch */,
+				04613F63469AA1811188D96489B47CC9 /* TCBBarcode-umbrella.h */,
+				5BBC370435A075A39734825246C02BE1 /* TCBBarcode.debug.xcconfig */,
+				185FE6955E5163043AE8BE8C6A0052C8 /* TCBBarcode.release.xcconfig */,
 			);
-			name = Pod;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/TCBBarcode";
 			sourceTree = "<group>";
 		};
-		8B9B62547FC5DCFAB3B76D3E6F7792D3 /* Development Pods */ = {
+		9F891AFE2E4BE6913B7A0E0AC76F3EA7 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FC59FC2F1097627AFFD7F3205D97A0FD /* TCBBarcode */,
+				F9FD5A611795FAECFB0A455E1BE90B0F /* TCBBarcode */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -169,26 +188,11 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				8B9B62547FC5DCFAB3B76D3E6F7792D3 /* Development Pods */,
+				9F891AFE2E4BE6913B7A0E0AC76F3EA7 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				D1BF91012C87AF7B4830D5FB278554E7 /* Products */,
 				DF8B28F33BE1EC40B2689371DA99ED68 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		CFEB2AB0100997E4104D8BAAC2C51A01 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				EA71DE78AB9AFB6398F06ECB8646ADF4 /* TCBBarcode.modulemap */,
-				68EC2A98B6691F1FF8D7F2A6A2074078 /* TCBBarcode-dummy.m */,
-				60BDA067066CF09EE99B51C6B6A6DB71 /* TCBBarcode-Info.plist */,
-				6BA68DA59893CC32B200F1AD9AACD68B /* TCBBarcode-prefix.pch */,
-				85982C4427FF30D0318DF21CD001B6DF /* TCBBarcode-umbrella.h */,
-				8B51AF21619D33C176D03B1B92504FF7 /* TCBBarcode.debug.xcconfig */,
-				4225639BE8FB7DEB5FC6541FB0A9DFF0 /* TCBBarcode.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/TCBBarcode";
 			sourceTree = "<group>";
 		};
 		D1BF91012C87AF7B4830D5FB278554E7 /* Products */ = {
@@ -218,15 +222,25 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		FC59FC2F1097627AFFD7F3205D97A0FD /* TCBBarcode */ = {
+		EC489A37CA78E763D64061076D9DD507 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F5203EFF244D616200333B1E /* TCBBarcodeError.swift */,
-				F5203EFB244AC99900333B1E /* TCBBarcodeGenerator.swift */,
-				F5203EFD244C6CC400333B1E /* TCBBarcodeScanner.swift */,
-				F5203F01244D6F4E00333B1E /* TCBBarcodeScannerView.swift */,
-				718ED7D76EB19185F615C40807F062B5 /* Pod */,
-				CFEB2AB0100997E4104D8BAAC2C51A01 /* Support Files */,
+				69C440E55845E48B8546AABE4796E93B /* Media.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F9FD5A611795FAECFB0A455E1BE90B0F /* TCBBarcode */ = {
+			isa = PBXGroup;
+			children = (
+				7C6807696D3D6D4966ED2B4291EBE256 /* TCBBarcodeError.swift */,
+				A476AF1A91A0360C77E6D5B7D0EF160B /* TCBBarcodeGenerator.swift */,
+				61AFF70009DFA1C498EE44DB6D0DF37D /* TCBBarcodeScanner.swift */,
+				A9A00703A8CB26A3FFDD3C86B4B26E93 /* TCBBarcodeScannerView.swift */,
+				1277DE69986771213AC617CC448DBCC1 /* TCBBarcodeScannerView.xib */,
+				232AEE2E38284DAC6C9198A0FCC931B3 /* Pod */,
+				EC489A37CA78E763D64061076D9DD507 /* Resources */,
+				6E52A535408A5761BC7851D90E0AE2B0 /* Support Files */,
 			);
 			name = TCBBarcode;
 			path = ../..;
@@ -235,6 +249,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		1AD00F5761F60FB2BD3A468B5E60D5BB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68C641F743C51170877EE5879BAF0084 /* TCBBarcode-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2E4A060B653E6AFE48DF7EA13E9F39CF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -248,14 +270,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F0278F6DF807C4BD570012513432053 /* Pods-TCBBarcode_Tests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DEA689DFB00A64B14C9ABC53DB2BC23E /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CC64837AF58ED77B8580ECF61938DC1C /* TCBBarcode-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,12 +316,12 @@
 		};
 		E176D1EC171CA53D38F292611312F142 /* TCBBarcode */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8D5E94DBA5374FA65EB940D7DB84364F /* Build configuration list for PBXNativeTarget "TCBBarcode" */;
+			buildConfigurationList = 26ED3375527892912BD20CFEAF704C21 /* Build configuration list for PBXNativeTarget "TCBBarcode" */;
 			buildPhases = (
-				DEA689DFB00A64B14C9ABC53DB2BC23E /* Headers */,
-				020B7F27552F7A9C9722FD93520069DB /* Sources */,
-				A7F4158CE505CBC5D5951567DB579F46 /* Frameworks */,
-				93042F0926F7EC5D33EEAA8F3A1C2324 /* Resources */,
+				1AD00F5761F60FB2BD3A468B5E60D5BB /* Headers */,
+				C8090DCAED4609D6B4539463BB83BAD6 /* Sources */,
+				BB1708AFEA7C4778075765492F26FACF /* Frameworks */,
+				EEB6D49B9BA6D2710B069AFDA59AFF76 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -362,28 +376,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		93042F0926F7EC5D33EEAA8F3A1C2324 /* Resources */ = {
+		EEB6D49B9BA6D2710B069AFDA59AFF76 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C6569DD2D0C3F5AE22AF994AFB8005F /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		020B7F27552F7A9C9722FD93520069DB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B36B83AD80A6E0FBC134D5C6F505B8DE /* TCBBarcode-dummy.m in Sources */,
-				F5203EFC244AC99900333B1E /* TCBBarcodeGenerator.swift in Sources */,
-				F5203EFE244C6CC400333B1E /* TCBBarcodeScanner.swift in Sources */,
-				F5203F02244D6F4E00333B1E /* TCBBarcodeScannerView.swift in Sources */,
-				F5203F00244D616200333B1E /* TCBBarcodeError.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		88478E3B01A3EE34C35D64E4F83631CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -397,6 +400,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C5E8E4601220C8667641507E3FF9169 /* Pods-TCBBarcode_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8090DCAED4609D6B4539463BB83BAD6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				216242201A3BCB6D0D7C1E9E2F6CE6BD /* TCBBarcode-dummy.m in Sources */,
+				25C00A1B30DC693E0CC6E0377F5EEFAE /* TCBBarcodeError.swift in Sources */,
+				8171DFDC4CB12A314A3F52C2C5259FC6 /* TCBBarcodeGenerator.swift in Sources */,
+				B10589F1AF10655A955F9CEBC60F110C /* TCBBarcodeScanner.swift in Sources */,
+				A6805AEC93A06F68E325DBCDBA78AC42 /* TCBBarcodeScannerView.swift in Sources */,
+				86F78EA10FD31BB68D28DC9018434815 /* TCBBarcodeScannerView.xib in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,45 +434,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0C126CDB818CFF7E3D37989836EEC159 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A7D5F78160FA309AB02C1F3AA976AAA /* Pods-TCBBarcode_Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-TCBBarcode_Tests/Pods-TCBBarcode_Tests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TCBBarcode_Tests/Pods-TCBBarcode_Tests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3E7219EE53BD7DA5FB55BBBA11EB4C18 /* Release */ = {
+		04770F6AD9E42FE09477499C5DB4AA3D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 21B65FE9BA3916883B83E7AB5DC9AE53 /* Pods-TCBBarcode_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -468,7 +452,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-TCBBarcode_Example/Pods-TCBBarcode_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-TCBBarcode_Example/Pods-TCBBarcode_Example.modulemap";
@@ -486,11 +470,13 @@
 			};
 			name = Release;
 		};
-		40758484448EBF6B8CADFF494F3BF040 /* Debug */ = {
+		07839197E11E9363BD1C148D4116C13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 19BEA246ADA34BE2FCB3D6D0F8E3BD96 /* Pods-TCBBarcode_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -502,7 +488,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-TCBBarcode_Example/Pods-TCBBarcode_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-TCBBarcode_Example/Pods-TCBBarcode_Example.modulemap";
@@ -519,38 +505,7 @@
 			};
 			name = Debug;
 		};
-		9A57822CC95428B9358E94F9896B0869 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B51AF21619D33C176D03B1B92504FF7 /* TCBBarcode.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TCBBarcode/TCBBarcode-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TCBBarcode/TCBBarcode-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TCBBarcode/TCBBarcode.modulemap";
-				PRODUCT_MODULE_NAME = TCBBarcode;
-				PRODUCT_NAME = TCBBarcode;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B0087CB4594321EF41619F3181FE120E /* Release */ = {
+		1422B121EAEAEA11307496903FA623C6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -598,22 +553,58 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
 		};
-		B845C5D6AD018A50A3A221B7CB7B9AEF /* Debug */ = {
+		4021ECA0767C9114E5D45087DA39BDF0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BBC370435A075A39734825246C02BE1 /* TCBBarcode.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TCBBarcode/TCBBarcode-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TCBBarcode/TCBBarcode-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TCBBarcode/TCBBarcode.modulemap";
+				PRODUCT_MODULE_NAME = TCBBarcode;
+				PRODUCT_NAME = TCBBarcode;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		633D014714189A3D20DF14D046E5DC75 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FD637D9E5D97D51E01384CE7F0C48AF0 /* Pods-TCBBarcode_Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -625,7 +616,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-TCBBarcode_Tests/Pods-TCBBarcode_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-TCBBarcode_Tests/Pods-TCBBarcode_Tests.modulemap";
@@ -642,7 +633,77 @@
 			};
 			name = Debug;
 		};
-		B8BCBD0110C2658BB5DAADB9B7D97B92 /* Debug */ = {
+		DED79830FE59AD390B34B306F54C27CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A7D5F78160FA309AB02C1F3AA976AAA /* Pods-TCBBarcode_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-TCBBarcode_Tests/Pods-TCBBarcode_Tests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TCBBarcode_Tests/Pods-TCBBarcode_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EA8D37281E6BF1A14CFA6B2DF2ECCC07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 185FE6955E5163043AE8BE8C6A0052C8 /* TCBBarcode.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/TCBBarcode/TCBBarcode-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TCBBarcode/TCBBarcode-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TCBBarcode/TCBBarcode.modulemap";
+				PRODUCT_MODULE_NAME = TCBBarcode;
+				PRODUCT_NAME = TCBBarcode;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		ED7888FA6713EABBF66D26A8003AD1CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -693,7 +754,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -706,46 +767,23 @@
 			};
 			name = Debug;
 		};
-		D62863914D5A6C1D8AD7C71E3F67BEA1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4225639BE8FB7DEB5FC6541FB0A9DFF0 /* TCBBarcode.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/TCBBarcode/TCBBarcode-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TCBBarcode/TCBBarcode-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TCBBarcode/TCBBarcode.modulemap";
-				PRODUCT_MODULE_NAME = TCBBarcode;
-				PRODUCT_NAME = TCBBarcode;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		26ED3375527892912BD20CFEAF704C21 /* Build configuration list for PBXNativeTarget "TCBBarcode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4021ECA0767C9114E5D45087DA39BDF0 /* Debug */,
+				EA8D37281E6BF1A14CFA6B2DF2ECCC07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8BCBD0110C2658BB5DAADB9B7D97B92 /* Debug */,
-				B0087CB4594321EF41619F3181FE120E /* Release */,
+				ED7888FA6713EABBF66D26A8003AD1CA /* Debug */,
+				1422B121EAEAEA11307496903FA623C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -753,17 +791,8 @@
 		61BA507A8A98E53DBCD09E2D02228B46 /* Build configuration list for PBXNativeTarget "Pods-TCBBarcode_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				40758484448EBF6B8CADFF494F3BF040 /* Debug */,
-				3E7219EE53BD7DA5FB55BBBA11EB4C18 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8D5E94DBA5374FA65EB940D7DB84364F /* Build configuration list for PBXNativeTarget "TCBBarcode" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				9A57822CC95428B9358E94F9896B0869 /* Debug */,
-				D62863914D5A6C1D8AD7C71E3F67BEA1 /* Release */,
+				07839197E11E9363BD1C148D4116C13F /* Debug */,
+				04770F6AD9E42FE09477499C5DB4AA3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -771,8 +800,8 @@
 		9CFD85074140869DDBB6E51F5361DB7E /* Build configuration list for PBXNativeTarget "Pods-TCBBarcode_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B845C5D6AD018A50A3A221B7CB7B9AEF /* Debug */,
-				0C126CDB818CFF7E3D37989836EEC159 /* Release */,
+				633D014714189A3D20DF14D046E5DC75 /* Debug */,
+				DED79830FE59AD390B34B306F54C27CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
