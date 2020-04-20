@@ -15,13 +15,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWB-tW-W13">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BsE-gQ-8zN">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Readable Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Afp-hL-EvR">
-                    <rect key="frame" x="0.0" y="270" width="320" height="30"/>
+                    <rect key="frame" x="0.0" y="260" width="320" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="uSn-BE-hfL"/>
+                        <constraint firstAttribute="height" constant="40" id="uSn-BE-hfL"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,8 +36,12 @@
             <constraints>
                 <constraint firstItem="DWB-tW-W13" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="8UR-oN-y2f"/>
                 <constraint firstItem="Afp-hL-EvR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="E2o-1J-XQ2"/>
+                <constraint firstItem="BsE-gQ-8zN" firstAttribute="leading" secondItem="DWB-tW-W13" secondAttribute="leading" id="MU0-Jz-paw"/>
+                <constraint firstItem="BsE-gQ-8zN" firstAttribute="trailing" secondItem="DWB-tW-W13" secondAttribute="trailing" id="OE2-n2-hag"/>
                 <constraint firstItem="DWB-tW-W13" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TBn-bx-eVS"/>
+                <constraint firstItem="BsE-gQ-8zN" firstAttribute="top" secondItem="DWB-tW-W13" secondAttribute="top" id="cHT-pL-shm"/>
                 <constraint firstAttribute="bottom" secondItem="Afp-hL-EvR" secondAttribute="bottom" id="ell-F2-sUk"/>
+                <constraint firstItem="BsE-gQ-8zN" firstAttribute="bottom" secondItem="DWB-tW-W13" secondAttribute="bottom" id="k3j-dr-slk"/>
                 <constraint firstItem="Afp-hL-EvR" firstAttribute="top" secondItem="DWB-tW-W13" secondAttribute="bottom" id="pyi-tP-bVH"/>
                 <constraint firstItem="Afp-hL-EvR" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="wYh-hb-39Z"/>
                 <constraint firstItem="DWB-tW-W13" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="wvH-FH-1up"/>
@@ -42,6 +50,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="codeLbl" destination="Afp-hL-EvR" id="2Nc-OC-Ob9"/>
+                <outlet property="detectView" destination="BsE-gQ-8zN" id="3XO-x6-fpN"/>
                 <outlet property="previewView" destination="DWB-tW-W13" id="1rX-PX-3YX"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="94.419642857142847"/>

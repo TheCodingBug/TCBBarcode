@@ -7,22 +7,29 @@
 
 import Foundation
 import AVFoundation
-import NFImageView
 
 public protocol TCBBarcodeScannerViewDelegate: NSObjectProtocol {
     
     func scannerView(scannerView: TCBBarcodeScannerView, setupDidFail error: Error)
-    func scannerView(scannerView: TCBBarcodeScannerView, didOutputCode code: String)
+    func scannerView(scannerView: TCBBarcodeScannerView, didOutputCode code: String, codeType type: String)
     
 }
 
 public class TCBBarcodeScannerView: UIView {
     
     @IBOutlet weak private var previewView: UIView!
+    @IBOutlet weak private var detectView: UIView!
     @IBOutlet weak private var codeLbl: UILabel!
     
     // MARK: - Declarations
     
+    public enum CodeDetectType {
+        case `default`
+        case box
+        case line
+    }
+    
+    fileprivate static let codeLblHeight: CGFloat = 40
     fileprivate var scanner: TCBBarcodeScanner!
     
     public weak var delegate: TCBBarcodeScannerViewDelegate!
@@ -33,6 +40,14 @@ public class TCBBarcodeScannerView: UIView {
             previewView.layer.cornerRadius = cornerRadius
         }
     }
+    
+    public var codeTextColor: UIColor = .gray {
+        didSet {
+            codeLbl.textColor = codeTextColor
+        }
+    }
+    
+    public var detectType: CodeDetectType = .default
     
     // MARK: - Initializers
     
@@ -50,7 +65,8 @@ public class TCBBarcodeScannerView: UIView {
     
     public override func awakeFromNib() {
         super.awakeFromNib()
-
+        
+        prepareView()
     }
     
     fileprivate func setup(frame: CGRect, delegate d: TCBBarcodeScannerViewDelegate!, supportedTypes types: [AVMetadataObject.ObjectType] = TCBBarcodeScanner.availableTypes, playSoundOnSuccess play: Bool = true) {
@@ -58,7 +74,7 @@ public class TCBBarcodeScannerView: UIView {
         delegate = d
         scanner = TCBBarcodeScanner(supportedTypes: types, playSoundOnSuccess: play, delegate: self)
         
-        let previewFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height - 30)
+        let previewFrame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height - TCBBarcodeScannerView.codeLblHeight)
         if let previewLayer = scanner.previewLayer(withFrame: previewFrame) {
             previewView.layer.addSublayer(previewLayer)
         }else{
@@ -74,15 +90,70 @@ extension TCBBarcodeScannerView {
     
     fileprivate func prepareView() {
         
+        backgroundColor = .clear
+        layer.cornerRadius = cornerRadius
+        
         clipsToBounds = true
         previewView.clipsToBounds = true
-        
-        layer.cornerRadius = cornerRadius
+        previewView.backgroundColor = .clear
         previewView.layer.cornerRadius = cornerRadius
+        
+        detectView.clipsToBounds = true
+        detectView.backgroundColor = .clear
+        detectView.isHidden = true
         
         codeLbl.text = ""
         codeLbl.textAlignment = .center
         codeLbl.textColor = .gray
+        codeLbl.backgroundColor = .clear
+        codeLbl.font = UIFont.systemFont(ofSize: 12)
+    }
+    
+    fileprivate func resetDetectView() {
+        
+        detectView.isHidden = true
+        
+        for view in detectView.subviews {
+            view.removeFromSuperview()
+        }
+        
+        if let sublayers = detectView.layer.sublayers {
+            for layer in sublayers {
+                layer.removeFromSuperlayer()
+            }
+        }
+    }
+    
+    fileprivate func showBox(frame: CGRect) {
+        resetDetectView()
+        
+        let codeBox = UIView(frame: frame)
+        codeBox.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        previewView.addSubview(codeBox)
+    }
+    
+    fileprivate func showLine(corners: [CGPoint]) {
+        resetDetectView()
+        
+        let bezierPath = UIBezierPath(rect: previewView.frame)
+
+        for (idx, point) in corners.enumerated() {
+            if idx > 0 {
+                bezierPath.addLine(to: point)
+            }else{
+                bezierPath.move(to: point)
+            }
+        }
+        
+        bezierPath.close()
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = bezierPath.cgPath
+        shapeLayer.strokeColor = UIColor.orange.cgColor
+        shapeLayer.lineWidth = 1
+        shapeLayer.fillColor = nil
+        
+        previewView.layer.addSublayer(shapeLayer)
     }
 }
 
@@ -95,10 +166,21 @@ extension TCBBarcodeScannerView: TCBBarcodeScannerDelegate {
         delegate.scannerView(scannerView: self, setupDidFail: error)
     }
     
-    public func scanner(scanner: TCBBarcodeScanner, didOutputCode code: String) {
+    public func scanner(scanner: TCBBarcodeScanner, didOutputCodeObject codeObject: TCBBarcodeScanner.CodeObject) {
+        codeLbl.text = "\(codeObject.type): \(codeObject.code)"
         
-        codeLbl.text = code
-        delegate.scannerView(scannerView: self, didOutputCode: code)
+        switch detectType {
+        case .box:
+            showBox(frame: codeObject.bounds)
+            
+        case .line:
+            showLine(corners: codeObject.corners)
+            
+        default:
+            resetDetectView()
+        }
+        
+        delegate.scannerView(scannerView: self, didOutputCode: codeObject.code, codeType: codeObject.type)
     }
 }
 
@@ -118,6 +200,6 @@ extension TCBBarcodeScannerView {
     
     public class func scannerFrameSizeFor(previewFrameSize size: CGSize) -> CGSize {
         
-        return CGSize(width: size.width, height: size.height + 30)
+        return CGSize(width: size.width, height: size.height + codeLblHeight)
     }
 }

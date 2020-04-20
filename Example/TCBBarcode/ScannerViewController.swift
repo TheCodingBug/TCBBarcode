@@ -44,10 +44,7 @@ extension ScannerViewController: TCBBarcodeScannerViewDelegate {
         
     }
     
-    func scannerView(scannerView: TCBBarcodeScannerView, didOutputCode code: String) {
-        print("Readable Code: ", code)
+    func scannerView(scannerView: TCBBarcodeScannerView, didOutputCode code: String, codeType type: String) {
+        print("Readable Type: \(type) -- Code: \(code)")
     }
-    
-    
-    
 }

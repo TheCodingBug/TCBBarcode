@@ -13,10 +13,21 @@ import AVFoundation
 public protocol TCBBarcodeScannerDelegate: NSObjectProtocol {
     
     func scanner(scanner: TCBBarcodeScanner, setupDidFail error: Error)
-    func scanner(scanner: TCBBarcodeScanner, didOutputCode code: String)
+    func scanner(scanner: TCBBarcodeScanner, didOutputCodeObject codeObject: TCBBarcodeScanner.CodeObject)
 }
 
 public class TCBBarcodeScanner: NSObject {
+    
+    public struct CodeObject {
+        var code: String
+        var type: String
+        
+        var bounds: CGRect
+        var corners: [CGPoint]
+        
+        var referenceBounds: CGRect
+        var referenceCorners: [CGPoint]
+    }
     
     // MARK: - Declarations
     
@@ -162,6 +173,7 @@ extension TCBBarcodeScanner: AVCaptureMetadataOutputObjectsDelegate {
         
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+            guard let codeObject = previewLayer.transformedMetadataObject(for: readableObject) as? AVMetadataMachineReadableCodeObject else { return }
             guard let readableCode = readableObject.stringValue else { return }
             
             if playSound {
@@ -169,8 +181,9 @@ extension TCBBarcodeScanner: AVCaptureMetadataOutputObjectsDelegate {
                 AudioServicesPlayAlertSound(soundID)
             }
             
-            // process readableCode
-            delegate.scanner(scanner: self, didOutputCode: readableCode)
+            let codeObj = CodeObject(code: readableCode, type: codeObject.type.rawValue, bounds: codeObject.bounds, corners: codeObject.corners, referenceBounds: readableObject.bounds, referenceCorners: readableObject.corners)
+            delegate.scanner(scanner: self, didOutputCodeObject: codeObj)
+            
             stop()
         }
     }
