@@ -1,9 +1,9 @@
 {
   "name": "TCBBarcode",
   "version": "0.1.0",
-  "summary": "A short description of TCBBarcode.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/nferocious76/TCBBarcode",
+  "summary": "TCBBarcode offers a quick way to setup a scanner and a generator for supported barcodes",
+  "description": "TCBBarcode offers a quick way to setup a scanner and a generator for supported barcodes. Configuration made easy.",
+  "homepage": "https://github.com/TheCodingBug/TCBBarcode",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,7 +12,7 @@
     "nferocious76": "nferocious76@gmail.com"
   },
   "source": {
-    "git": "https://github.com/nferocious76/TCBBarcode.git",
+    "git": "https://github.com/TheCodingBug/TCBBarcode.git",
     "tag": "0.1.0"
   },
   "platforms": {
@@ -20,6 +20,5 @@
   },
   "swift_versions": "5.0",
   "source_files": "TCBBarcode/Classes/**/*",
-  "resources": "TCBBarcode/Assets/**",
   "swift_version": "5.0"
 }

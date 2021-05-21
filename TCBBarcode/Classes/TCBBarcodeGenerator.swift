@@ -13,7 +13,7 @@ public class TCBBarcodeGenerator: NSObject {
     
     // MARK: - Declarations
     
-    private var transform: CGAffineTransform = CGAffineTransform(scaleX: UIScreen.main.scale, y: UIScreen.main.scale)
+    private var transform: CGAffineTransform = .identity
     
     public enum TCBBarcodeGeneratorType {
         
@@ -93,13 +93,7 @@ public class TCBBarcodeGenerator: NSObject {
         transform = t
     }
     
-    public func generateCode(forType type: TCBBarcodeGeneratorType, source: String) -> UIImage? {
-        
-        guard let data = source.data(using: .ascii) else { return nil }
-        guard let output = codeDescriptor(forType: type, data: data) else { return nil }
-        
-        return UIImage(ciImage: output)
-    }
+    // MARK: - Helpers
     
     internal func codeDescriptor(forType type: TCBBarcodeGeneratorType, data: Data) -> CIImage? {
         
@@ -173,5 +167,16 @@ public class TCBBarcodeGenerator: NSObject {
         let scaled = output.transformed(by: transform, highQualityDownsample: true)
         
         return scaled
+    }
+}
+
+// MARK: - Public Controls
+extension TCBBarcodeGenerator {
+    public func generateCode(forType type: TCBBarcodeGeneratorType, source: String) -> UIImage? {
+        
+        guard let data = source.data(using: .ascii) else { return nil }
+        guard let output = codeDescriptor(forType: type, data: data) else { return nil }
+        
+        return UIImage(ciImage: output)
     }
 }
