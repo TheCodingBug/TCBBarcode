@@ -117,6 +117,7 @@
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                     <segment title=""/>
+                                    <segment title=""/>
                                 </segments>
                                 <connections>
                                     <action selector="segment:" destination="vXZ-lx-hvc" eventType="valueChanged" id="VsM-J5-w1Q"/>

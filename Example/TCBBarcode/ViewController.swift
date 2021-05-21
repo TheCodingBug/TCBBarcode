@@ -29,8 +29,9 @@ class ViewController: UIViewController {
         generator = TCBBarcodeGenerator(transform: CGAffineTransform(scaleX: 10, y: 10))
         
         segmentControl.setTitle("Apply Tint", forSegmentAt: 0)
-        segmentControl.setTitle("Apply Blend", forSegmentAt: 1)
-        segmentControl.setTitle("Apply Logo", forSegmentAt: 2)
+        segmentControl.setTitle("Blend-Fill", forSegmentAt: 1)
+        segmentControl.setTitle("Blend-Fit", forSegmentAt: 2)
+        segmentControl.setTitle("Apply Logo", forSegmentAt: 3)
     }
 
     @IBAction func generateBtn(_ sender: UIButton) {
@@ -69,8 +70,10 @@ class ViewController: UIViewController {
         case 0:
             codeObject.applyTint(color: .green)
         case 1:
-            codeObject.applyBlend(withImage: image)
+            codeObject.applyBlend(withImage: image, fillMode: .aspectFill)
         case 2:
+            codeObject.applyBlend(withImage: image, fillMode: .aspectFit)
+        case 3:
             codeObject.applyLogo(withImage: image)
         default:
             break
