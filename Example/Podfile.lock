@@ -1,5 +1,5 @@
 PODS:
-  - TCBBarcode (0.1.0)
+  - TCBBarcode (0.1.1)
 
 DEPENDENCIES:
   - TCBBarcode (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  TCBBarcode: 9b48ba7a0b33cde251c0e7df8c4dc3a2cc417107
+  TCBBarcode: 9cc9176adae922cb1f40a520a6e4f92c453f7298
 
 PODFILE CHECKSUM: 1f4ae0ea49a26e3524e846f83b33ffb50f7351cf
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

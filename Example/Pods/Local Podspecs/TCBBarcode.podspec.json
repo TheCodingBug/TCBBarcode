@@ -1,6 +1,6 @@
 {
   "name": "TCBBarcode",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "TCBBarcode offers a quick way to setup a scanner and a generator for supported barcodes",
   "description": "TCBBarcode offers a quick way to setup a scanner and a generator for supported barcodes. Configuration made easy.",
   "homepage": "https://github.com/TheCodingBug/TCBBarcode",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/TheCodingBug/TCBBarcode.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "13.0"
