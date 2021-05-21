@@ -34,9 +34,19 @@ pod 'TCBBarcode'
 let generator = TCBBarcodeGenerator(transform: CGAffineTransform(scaleX: 10, y: 10))
 
 // .QRCode(level: .levelH)
-if let code = generator.generateCode(forType: .QRCode(), source: inputeTxtFld.text!.cleanString) {
+if let codeObject = generator.generateCode(forType: .QRCode(), source: inputeTxtFld.text!.cleanString) {
+ 
+    // apply tint | change barcode color
+    codeObject.applyTint(color: .green)
     
-    imageView.image = code
+    // Blends an image | gradient to the code mask
+    codeObject.applyBlend(withImage: image)
+    
+    // Apply logo at the center with 0.18% scale
+    // Only tested on QR type codes
+    codeObject.applyLogo(withImage: image)
+    
+    imageView.image = codeObject.code
 }
 
 ```
