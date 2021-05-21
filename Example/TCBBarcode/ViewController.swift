@@ -16,13 +16,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var generateBtn: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+    
     var generator: TCBBarcodeGenerator!
+    var codeObject: TCBBarcodeObject!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        imageView.image = UIImage(named: "nf-logo")
         generator = TCBBarcodeGenerator(transform: CGAffineTransform(scaleX: 10, y: 10))
+        
+        segmentControl.setTitle("Apply Tint", forSegmentAt: 0)
+        segmentControl.setTitle("Apply Blend", forSegmentAt: 1)
+        segmentControl.setTitle("Apply Logo", forSegmentAt: 2)
     }
 
     @IBAction func generateBtn(_ sender: UIButton) {
@@ -52,11 +60,30 @@ class ViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    func generateCode(forType type: TCBBarcodeGenerator.TCBBarcodeGeneratorType) {
+    @IBAction func segment(_ sender: UISegmentedControl) {
+        guard let codeObject = codeObject else { return }
+        let logoImage = UIImage(named: "nf-logo")!
+        let image = logoImage.cgImage!
         
-        if let code = generator.generateCode(forType: type, source: inputeTxtFld.text!.cleanString) {
-            
-            imageView.image = code
+        switch sender.selectedSegmentIndex {
+        case 0:
+            codeObject.applyTint(color: .green)
+        case 1:
+            codeObject.applyBlend(withImage: image)
+        case 2:
+            codeObject.applyLogo(withImage: image)
+        default:
+            break
+        }
+        
+        // apply new code
+        imageView.image = codeObject.code
+    }
+    
+    func generateCode(forType type: TCBBarcodeGenerator.TCBBarcodeGeneratorType) {
+        if let codeObject = generator.generateCode(forType: type, source: inputeTxtFld.text!.cleanString) {
+            self.codeObject = codeObject
+            imageView.image = codeObject.code
         }
     }
     
