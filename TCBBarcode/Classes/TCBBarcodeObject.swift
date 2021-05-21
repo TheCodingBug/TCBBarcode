@@ -9,7 +9,13 @@ import Foundation
 import CoreImage
 
 public class TCBBarcodeObject: NSObject {
-   
+    
+    public enum TCBBarcodeObjectFillMode {
+        case originalSize // image size is retained
+        case aspectFit // contents scaled to fit with fixed aspect. remainder is transparent
+        case aspectFill // contents scaled to fill with fixed aspect. some portion of content may be clipped.
+    }
+    
     private var ciCode: CIImage!
     private var transform: CGAffineTransform = .identity
     
@@ -37,7 +43,6 @@ extension TCBBarcodeObject {
     }
     
     fileprivate func getFitRatio(forCanvas canvas: CGSize, itemSize: CGSize) -> CGFloat {
-        
         let ratio = getScale(forCanvas: canvas.width, itemSize: itemSize.width)
         
         // validate ratio to canvas size
@@ -49,6 +54,42 @@ extension TCBBarcodeObject {
         }
         
         return ratio
+    }
+    
+    fileprivate func getFillRatio(forCanvas canvas: CGSize, itemSize: CGSize) -> CGFloat {
+        let ratio = getScale(forCanvas: canvas.width, itemSize: itemSize.width)
+        
+        // validate ratio to canvas size
+        if ratio * itemSize.height < canvas.height { // invalid
+            // flip values
+            let flippedCanvas = CGSize(width: canvas.height, height: canvas.width)
+            let flippedItemSize = CGSize(width: itemSize.height, height: itemSize.width)
+            return getFillRatio(forCanvas: flippedCanvas, itemSize: flippedItemSize)
+        }
+        
+        return ratio
+    }
+    
+    fileprivate func getScale(for mode: TCBBarcodeObjectFillMode, withCanvas canvas: CGSize, itemSize: CGSize) -> CGFloat {
+        switch mode {
+        case .aspectFit:
+            return getFitRatio(forCanvas: canvas, itemSize: itemSize)
+        case .aspectFill:
+            return getFillRatio(forCanvas: canvas, itemSize: itemSize)
+        default:
+            return 1.0
+        }
+    }
+    
+    fileprivate func applyCrop(for mode: TCBBarcodeObjectFillMode, imageCode: CIImage, itemSize: CGSize) -> CIImage {
+        switch mode {
+        case .aspectFill:
+            let cropRect = CGRect(x: 0, y: 0, width: itemSize.width, height: itemSize.height)
+            let output = imageCode.cropped(to: cropRect)
+            return output
+        default:
+            return imageCode
+        }
     }
     
     fileprivate func setCodeTransparent(_ ciCode: CIImage) -> CIImage? {
@@ -108,9 +149,9 @@ extension TCBBarcodeObject {
         ciCode = output // update original
     }
     
-    public func applyBlend(withImage img: CGImage) {
+    public func applyBlend(withImage img: CGImage, fillMode mode: TCBBarcodeObjectFillMode = .aspectFill) {
         let image = CIImage(cgImage: img)
-        let scale = getFitRatio(forCanvas: ciCode.extent.size, itemSize: image.extent.size)
+        let scale = getScale(for: mode, withCanvas: ciCode.extent.size, itemSize: image.extent.size)
         let reScaleTransform = CGAffineTransform(scaleX: scale, y: scale)
         let reScaledImage = image.transformed(by: reScaleTransform)
         
@@ -122,12 +163,13 @@ extension TCBBarcodeObject {
               let output = filter.outputImage
         else { return }
         
-        ciCode = output // update original
+        let cropped = applyCrop(for: mode, imageCode: output, itemSize: ciCode.extent.size)
+        ciCode = cropped // update original
     }
     
-    public func applyLogo(withImage img: CGImage) {
+    public func applyLogo(withImage img: CGImage, fillMode mode: TCBBarcodeObjectFillMode = .aspectFill) {
         let image = CIImage(cgImage: img)
-        let scale = getFitRatio(forCanvas: ciCode.extent.size, itemSize: image.extent.size) * 0.18 // set to 20% of the canvas
+        let scale = getScale(for: mode, withCanvas: ciCode.extent.size, itemSize: image.extent.size) * 0.18 // set to 20% of the canvas
         let reScaleTransform = CGAffineTransform(scaleX: scale, y: scale)
         let reScaledLogo = image.transformed(by: reScaleTransform)
         let logoMidX = reScaledLogo.extent.width / 2
