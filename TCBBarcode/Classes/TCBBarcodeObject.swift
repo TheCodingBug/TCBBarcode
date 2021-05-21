@@ -167,9 +167,9 @@ extension TCBBarcodeObject {
         ciCode = cropped // update original
     }
     
-    public func applyLogo(withImage img: CGImage, fillMode mode: TCBBarcodeObjectFillMode = .aspectFill) {
+    public func applyLogo(withImage img: CGImage) {
         let image = CIImage(cgImage: img)
-        let scale = getScale(for: mode, withCanvas: ciCode.extent.size, itemSize: image.extent.size) * 0.18 // set to 20% of the canvas
+        let scale = getFitRatio(forCanvas: ciCode.extent.size, itemSize: image.extent.size) * 0.18 // set to 20% of the canvas
         let reScaleTransform = CGAffineTransform(scaleX: scale, y: scale)
         let reScaledLogo = image.transformed(by: reScaleTransform)
         let logoMidX = reScaledLogo.extent.width / 2
