@@ -143,10 +143,10 @@ extension TCBBarcodeObject {
             kCIInputBackgroundImageKey: output as Any
         ]
         guard let compositeFilter = CIFilter(name: "CIMultiplyCompositing", parameters: compositeParams),
-              let output = compositeFilter.outputImage
+              let output2 = compositeFilter.outputImage
         else { return }
         
-        ciCode = output // update original
+        ciCode = output2 // update original
     }
     
     public func applyBlend(withImage img: CGImage, fillMode mode: TCBBarcodeObjectFillMode = .aspectFill) {
