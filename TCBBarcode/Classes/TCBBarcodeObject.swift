@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreImage
 
 public class TCBBarcodeObject: NSObject {
    
@@ -30,76 +31,121 @@ public class TCBBarcodeObject: NSObject {
 
 // MARK: - Helpers
 extension TCBBarcodeObject {
+    fileprivate func getScale(forCanvas canvas: CGFloat, itemSize: CGFloat) -> CGFloat {
+        
+        return canvas / itemSize
+    }
     
-    public func applyTransparent() -> TCBBarcodeObject {
-        let params = [kCIInputImageKey: ciCode as Any]
-        if let filter = CIFilter(name: "CIMaskToAlpha", parameters: params),
-           let output = filter.outputImage {
-            ciCode = output // update original
+    fileprivate func getFitRatio(forCanvas canvas: CGSize, itemSize: CGSize) -> CGFloat {
+        
+        let ratio = getScale(forCanvas: canvas.width, itemSize: itemSize.width)
+        
+        // validate ratio to canvas size
+        if ratio * itemSize.height > canvas.height { // invalid
+            // flip values
+            let flippedCanvas = CGSize(width: canvas.height, height: canvas.width)
+            let flippedItemSize = CGSize(width: itemSize.height, height: itemSize.width)
+            return getFitRatio(forCanvas: flippedCanvas, itemSize: flippedItemSize)
         }
+        
+        return ratio
+    }
+    
+    fileprivate func setCodeTransparent(_ ciCode: CIImage) -> CIImage? {
+        let params = [kCIInputImageKey: ciCode as Any]
+        guard let filter = CIFilter(name: "CIMaskToAlpha", parameters: params),
+              let output = filter.outputImage
+        else { return nil }
+        
+        return output
+    }
+    
+    fileprivate func setCodeColorInverted(_ ciCode: CIImage) -> CIImage? {
+        let params = [kCIInputImageKey: ciCode as Any]
+        guard let filter = CIFilter(name: "CIColorInvert", parameters: params),
+              let output = filter.outputImage
+        else { return nil }
+        
+        return output
+    }
+}
 
-        return self
-    }
+extension TCBBarcodeObject {
     
-    public func applyInvert() -> TCBBarcodeObject {
-        let params = [kCIInputImageKey: ciCode as Any]
-        if let filter = CIFilter(name: "CIColorInvert", parameters: params),
-           let output = filter.outputImage {
+    public func applyTransparent() {
+        if let output = setCodeTransparent(ciCode) {
             ciCode = output // update original
         }
-        
-        return self
     }
     
-    public func applyTint(color: UIColor) -> TCBBarcodeObject {
-        // apply color
-        let colorParams = [kCIInputColorKey: color.ciColor as Any]
-        if let colorFilter = CIFilter(name: "CIConstantColorGenerator", parameters: colorParams),
-           let colorOutput = colorFilter.outputImage {
-            
-            // apply composite
-            let compositeParams = [
-                kCIInputImageKey: ciCode as Any,
-                kCIInputBackgroundImageKey: colorOutput as Any
-            ]
-            if let compositeFilter = CIFilter(name: "CIMultiplyCompositing", parameters: compositeParams),
-               let compositeOutput = compositeFilter.outputImage {
-                ciCode = compositeOutput // update original
-            }
+    public func applyInvert() {
+        if let output = setCodeColorInverted(ciCode) {
+            ciCode = output // update original
         }
-        
-        return self
     }
     
-    public func applyBlend(withImage image: CGImage) -> TCBBarcodeObject {
+    public func applyTint(color: UIColor) {
+        // apply color
+        let ciColor = CIColor(color: color)
+        let colorParams = [kCIInputColorKey: ciColor as Any]
+        guard let colorFilter = CIFilter(name: "CIConstantColorGenerator", parameters: colorParams),
+              let output = colorFilter.outputImage
+        else { return }
+        
+        // if conversion fails, original code will not be affected
+        guard let inverted = setCodeColorInverted(ciCode) else { return } // flip color
+        guard let transparent = setCodeTransparent(inverted) else { return } // make solid color transparent
+        
+        // apply composite
+        let compositeParams = [
+            kCIInputImageKey: transparent as Any,
+            kCIInputBackgroundImageKey: output as Any
+        ]
+        guard let compositeFilter = CIFilter(name: "CIMultiplyCompositing", parameters: compositeParams),
+              let output = compositeFilter.outputImage
+        else { return }
+        
+        ciCode = output // update original
+    }
+    
+    public func applyBlend(withImage img: CGImage) {
+        let image = CIImage(cgImage: img)
+        let scale = getFitRatio(forCanvas: ciCode.extent.size, itemSize: image.extent.size)
+        let reScaleTransform = CGAffineTransform(scaleX: scale, y: scale)
+        let reScaledImage = image.transformed(by: reScaleTransform)
+        
         let params = [
             kCIInputMaskImageKey: ciCode as Any,
-            kCIInputBackgroundImageKey: image as Any
+            kCIInputBackgroundImageKey: reScaledImage as Any
         ]
-        if let filter = CIFilter(name: "CIBlendWithMask", parameters: params),
-           let output = filter.outputImage {
-            ciCode = output // update original
-        }
+        guard let filter = CIFilter(name: "CIBlendWithMask", parameters: params),
+              let output = filter.outputImage
+        else { return }
         
-        return self
+        ciCode = output // update original
     }
     
-    public func applyLogo(withImage image: CIImage) -> TCBBarcodeObject {
+    public func applyLogo(withImage img: CGImage) {
+        let image = CIImage(cgImage: img)
+        let scale = getFitRatio(forCanvas: ciCode.extent.size, itemSize: image.extent.size) * 0.18 // set to 20% of the canvas
+        let reScaleTransform = CGAffineTransform(scaleX: scale, y: scale)
+        let reScaledLogo = image.transformed(by: reScaleTransform)
+        let logoMidX = reScaledLogo.extent.width / 2
+        let logoMidY = reScaledLogo.extent.height / 2
         
-        let midX = ciCode.extent.midX - image.extent.size.width * 0.2 // 20%
-        let midY = ciCode.extent.midY - image.extent.size.height * 0.2 // 20%
+        let midX = ciCode.extent.midX - logoMidX
+        let midY = ciCode.extent.midY - logoMidY
         let imageTransform = CGAffineTransform(translationX: midX, y: midY)
-        let logo = image.transformed(by: imageTransform, highQualityDownsample: true)
+        let logo = reScaledLogo.transformed(by: imageTransform, highQualityDownsample: true)
         
         let params = [
             kCIInputImageKey: logo as Any,
             kCIInputBackgroundImageKey: ciCode as Any
         ]
-        if let filter = CIFilter(name: "CISourceOverCompositing", parameters: params),
-           let output = filter.outputImage {
-            ciCode = output // update original
-        }
+        guard let filter = CIFilter(name: "CISourceOverCompositing", parameters: params),
+              let output = filter.outputImage
+        else { return }
         
-        return self
+        ciCode = output // update original
     }
 }

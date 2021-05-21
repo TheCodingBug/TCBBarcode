@@ -172,11 +172,11 @@ public class TCBBarcodeGenerator: NSObject {
 
 // MARK: - Public Controls
 extension TCBBarcodeGenerator {
-    public func generateCode(forType type: TCBBarcodeGeneratorType, source: String) -> UIImage? {
+    public func generateCode(forType type: TCBBarcodeGeneratorType, source: String) -> TCBBarcodeObject? {
         
-        guard let data = source.data(using: .ascii) else { return nil }
+        guard let data = source.data(using: .utf8) else { return nil }
         guard let output = codeDescriptor(forType: type, data: data) else { return nil }
         
-        return UIImage(ciImage: output)
+        return TCBBarcodeObject(barcode: output, transform: transform)
     }
 }
