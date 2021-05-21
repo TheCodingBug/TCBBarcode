@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TCBBarcode'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'TCBBarcode offers a quick way to setup a scanner and a generator for supported barcodes'
 
 # This description is used to generate tags and improve search results.
