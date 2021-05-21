@@ -42,6 +42,9 @@ if let codeObject = generator.generateCode(forType: .QRCode(), source: inputeTxt
     // Blends an image | gradient to the code mask
     codeObject.applyBlend(withImage: image)
     
+    // Blends an image | gradient to the code mask -- set fill mode
+    codeObject.applyBlend(withImage: image, fillMode: .aspectFill)
+    
     // Apply logo at the center with 0.18% scale
     // Only tested on QR type codes
     codeObject.applyLogo(withImage: image)
