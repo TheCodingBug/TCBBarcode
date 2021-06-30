@@ -37,8 +37,17 @@ public class TCBBarcodeObject: NSObject {
 
 // MARK: - Helpers
 extension TCBBarcodeObject {
-    fileprivate func getScale(forCanvas canvas: CGFloat, itemSize: CGFloat) -> CGFloat {
+    
+    fileprivate func roundOff(value: CGFloat, decimal: Int = 2) -> CGFloat {
+        let power = pow(10, decimal)
+        let decimalFloat = NSDecimalNumber(decimal: power).floatValue
+        let decimal = CGFloat(decimalFloat)
+        let rounded = round((value * decimal) / decimal)
         
+        return rounded
+    }
+    
+    fileprivate func getScale(forCanvas canvas: CGFloat, itemSize: CGFloat) -> CGFloat {
         return canvas / itemSize
     }
     
@@ -46,7 +55,11 @@ extension TCBBarcodeObject {
         let ratio = getScale(forCanvas: canvas.width, itemSize: itemSize.width)
         
         // validate ratio to canvas size
-        if ratio * itemSize.height > canvas.height { // invalid
+        let itemHeight = ratio * itemSize.height
+        let roundedItemHeight = roundOff(value: itemHeight)
+        let roundedCanvasHeight = roundOff(value: canvas.height)
+        
+        if roundedItemHeight > roundedCanvasHeight { // invalid
             // flip values
             let flippedCanvas = CGSize(width: canvas.height, height: canvas.width)
             let flippedItemSize = CGSize(width: itemSize.height, height: itemSize.width)
@@ -60,7 +73,11 @@ extension TCBBarcodeObject {
         let ratio = getScale(forCanvas: canvas.width, itemSize: itemSize.width)
         
         // validate ratio to canvas size
-        if ratio * itemSize.height < canvas.height { // invalid
+        let itemHeight = ratio * itemSize.height
+        let roundedItemHeight = roundOff(value: itemHeight)
+        let roundedCanvasHeight = roundOff(value: canvas.height)
+        
+        if roundedItemHeight < roundedCanvasHeight { // invalid
             // flip values
             let flippedCanvas = CGSize(width: canvas.height, height: canvas.width)
             let flippedItemSize = CGSize(width: itemSize.height, height: itemSize.width)
