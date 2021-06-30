@@ -42,7 +42,7 @@ extension TCBBarcodeObject {
         let power = pow(10, decimal)
         let decimalFloat = NSDecimalNumber(decimal: power).floatValue
         let decimal = CGFloat(decimalFloat)
-        let rounded = round((value * decimal) / decimal)
+        let rounded = round(value * decimal) / decimal
         
         return rounded
     }
