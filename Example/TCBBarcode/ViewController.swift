@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         imageView.image = UIImage(named: "nf-logo")
-        generator = TCBBarcodeGenerator(transform: CGAffineTransform(scaleX: 10, y: 10))
+        generator = TCBBarcodeGenerator()
         
         segmentControl.setTitle("Apply Tint", forSegmentAt: 0)
         segmentControl.setTitle("Blend-Fill", forSegmentAt: 1)
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "AztecCode", style: .default, handler: { _ in
-            self.generateCode(forType: .AztecCode())
+            self.generateCode(forType: .AztecCode(), transform: CGAffineTransform(scaleX: 3, y: 3))
         }))
         
         alert.addAction(UIAlertAction(title: "PDF417Code", style: .default, handler: { _ in
@@ -83,8 +83,8 @@ class ViewController: UIViewController {
         imageView.image = codeObject.code
     }
     
-    func generateCode(forType type: TCBBarcodeGenerator.TCBBarcodeGeneratorType) {
-        if let codeObject = generator.generateCode(forType: type, source: inputeTxtFld.text!.cleanString) {
+    func generateCode(forType type: TCBBarcodeGenerator.TCBBarcodeGeneratorType, transform: CGAffineTransform = CGAffineTransform(scaleX: 10, y: 10)) {
+        if let codeObject = generator.generateCode(forType: type, source: inputeTxtFld.text!.cleanString, transform: transform) {
             self.codeObject = codeObject
             imageView.image = codeObject.code
         }
