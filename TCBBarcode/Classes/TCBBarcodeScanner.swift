@@ -135,7 +135,7 @@ public class TCBBarcodeScanner: NSObject {
 
 extension TCBBarcodeScanner {
     
-    public func previewLayer(withFrame frame: CGRect, videoGravity: AVLayerVideoGravity = .resizeAspectFill) -> AVCaptureVideoPreviewLayer! {
+    public func previewLayer(withFrame frame: CGRect, videoGravity: AVLayerVideoGravity = .resizeAspectFill, videoOrientation: AVCaptureVideoOrientation = .portrait, isVideoMirrored: Bool = false) -> AVCaptureVideoPreviewLayer! {
         
         guard let session = session, session.inputs.count > 0 else { return nil } // no active session
         guard let metadataOutput = session.outputs.first as? AVCaptureMetadataOutput else { return nil }
@@ -147,6 +147,19 @@ extension TCBBarcodeScanner {
         previewLayer.frame = frame
         previewLayer.videoGravity = videoGravity
         
+        // get videw connection
+        if let videoConnection = previewLayer.connection {
+            // set preferred video orientation -- if video orientation supported
+            if videoConnection.isVideoOrientationSupported {
+                videoConnection.videoOrientation = videoOrientation
+            }
+            
+            // set preferred video mirroring -- if mirror supported
+            if videoConnection.isVideoMirroringSupported {
+                videoConnection.isVideoMirrored = isVideoMirrored
+            }
+        }
+
         // add point of interest
         let rectOfInterest = previewLayer.metadataOutputRectConverted(fromLayerRect: frame)
         metadataOutput.rectOfInterest = rectOfInterest
