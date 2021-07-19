@@ -67,14 +67,14 @@ public class TCBBarcodeScannerView: UIView {
     
     // MARK: - Initializers
     
-    public class func instance(frame: CGRect, delegate: TCBBarcodeScannerViewDelegate!, supportedTypes types: [AVMetadataObject.ObjectType] = TCBBarcodeScanner.availableTypes, playSoundOnSuccess play: Bool = true) -> TCBBarcodeScannerView {
+    public class func instance(frame: CGRect, delegate: TCBBarcodeScannerViewDelegate!, forCaptureType type: TCBBarcodeScanner.TCBBarcodeCaptureType = .barcode, supportedTypes types: [AVMetadataObject.ObjectType] = TCBBarcodeScanner.availableTypes, playSoundOnSuccess play: Bool = true) -> TCBBarcodeScannerView {
         
         let bundle = Bundle(for: TCBBarcodeScannerView.self)
         let nib = UINib(nibName: "TCBBarcodeScannerView", bundle: bundle)
         let scanner = nib.instantiate(withOwner: nil, options: nil).first as! TCBBarcodeScannerView
         
         scanner.frame = frame
-        scanner.setup(frame: frame, delegate: delegate, supportedTypes: types, playSoundOnSuccess: play)
+        scanner.setup(frame: frame, delegate: delegate, forCaptureType: type, supportedTypes: types, playSoundOnSuccess: play)
         
         return scanner
     }
@@ -85,10 +85,10 @@ public class TCBBarcodeScannerView: UIView {
         prepareView()
     }
     
-    fileprivate func setup(frame: CGRect, delegate d: TCBBarcodeScannerViewDelegate!, supportedTypes types: [AVMetadataObject.ObjectType] = TCBBarcodeScanner.availableTypes, playSoundOnSuccess play: Bool = true) {
+    fileprivate func setup(frame: CGRect, delegate d: TCBBarcodeScannerViewDelegate!, forCaptureType type: TCBBarcodeScanner.TCBBarcodeCaptureType = .barcode, supportedTypes types: [AVMetadataObject.ObjectType] = TCBBarcodeScanner.availableTypes, playSoundOnSuccess play: Bool = true) {
         
         delegate = d
-        scanner = TCBBarcodeScanner(supportedTypes: types, position: .back, playSoundOnSuccess: play, delegate: self)
+        scanner = TCBBarcodeScanner(forCaptureType: type, supportedTypes: types, position: .back, playSoundOnSuccess: play, delegate: self)
         
         let previewFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height - TCBBarcodeScannerView.codeLblHeight)
         if let previewLayer = scanner.previewLayer(withFrame: previewFrame) {
@@ -246,9 +246,9 @@ extension TCBBarcodeScannerView {
         scanner.updateScanArea(frame: frame)
     }
     
-    public func scan(forCaptureType type: TCBBarcodeScanner.TCBBarcodeCaptureType = .barcode) {
+    public func scan() {
         resetDetectView()
-        scanner.start(forCaptureType: type)
+        scanner.start()
     }
     
     public func capture() {

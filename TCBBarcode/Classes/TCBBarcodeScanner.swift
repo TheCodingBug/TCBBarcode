@@ -55,7 +55,6 @@ public class TCBBarcodeScanner: NSObject {
     }
     
     // MARK: - Declarations
-    internal var captureType: TCBBarcodeScanner.TCBBarcodeCaptureType = .barcode
     internal var session: AVCaptureSession!
     internal var previewLayer: AVCaptureVideoPreviewLayer!
 
@@ -79,7 +78,20 @@ public class TCBBarcodeScanner: NSObject {
         .dataMatrix
     ]
     
+    public static let defaultPhotoSettingsArray: [AVCapturePhotoSettings] = [
+        AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc]),
+        AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevcWithAlpha]),
+        AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.h264]),
+        AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg]),
+        AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.proRes422]),
+        AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.proRes422HQ]),
+        AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.proRes422LT]),
+        AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.proRes422Proxy]),
+        AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.proRes4444])
+    ]
+    
     public weak var delegate: TCBBarcodeScannerDelegate!
+    public var captureType: TCBBarcodeScanner.TCBBarcodeCaptureType = .barcode
     public var supportedTypes: [AVMetadataObject.ObjectType] = []
     public var playSound: Bool = true
     
@@ -97,9 +109,10 @@ public class TCBBarcodeScanner: NSObject {
         super.init()
     }
     
-    convenience public init(supportedTypes types: [AVMetadataObject.ObjectType] = availableTypes, position: AVCaptureDevice.Position = .unspecified, playSoundOnSuccess play: Bool = true, delegate d: TCBBarcodeScannerDelegate!) {
+    convenience public init(forCaptureType type: TCBBarcodeScanner.TCBBarcodeCaptureType = .barcode, supportedTypes types: [AVMetadataObject.ObjectType] = availableTypes, position: AVCaptureDevice.Position = .unspecified, playSoundOnSuccess play: Bool = true, delegate d: TCBBarcodeScannerDelegate!) {
         self.init()
         
+        captureType = type
         supportedTypes = types
         playSound = play
         delegate = d
@@ -109,10 +122,7 @@ public class TCBBarcodeScanner: NSObject {
     
     internal func setupSession(position: AVCaptureDevice.Position) {
         
-        let captureDeviceTypes: [AVCaptureDevice.DeviceType] = [.builtInTrueDepthCamera, .builtInDualCamera, .builtInWideAngleCamera]
-        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: captureDeviceTypes, mediaType: .video, position: position)
-        
-        guard let captureDevice = bestDevice(in: position, discoverySession: discoverySession) else {
+        guard let captureDevice = bestDevice(in: position) else {
             let error = TCBBarcodeError.createCustomError(errorMessage: "Missing capture devices")
             delegate.scanner(scanner: self, setupDidFail: error)
             return
@@ -126,7 +136,6 @@ public class TCBBarcodeScanner: NSObject {
         
         session = AVCaptureSession()
         session.beginConfiguration()
-        session.sessionPreset = .high
         
         if session.canAddInput(inputDevice) {
             session.addInput(inputDevice)
@@ -149,17 +158,24 @@ public class TCBBarcodeScanner: NSObject {
         
         // add photo output for still images
         let photoOutput = AVCapturePhotoOutput()
-        photoOutput.isHighResolutionCaptureEnabled = true
         if session.canAddOutput(photoOutput) {
+            session.sessionPreset = .photo
             session.addOutput(photoOutput)
+            
+            photoOutput.isHighResolutionCaptureEnabled = true
+        }else{
+            let error = TCBBarcodeError.createCustomError(errorMessage: "Photo Capture configuration failed")
+            delegate.scanner(scanner: self, setupDidFail: error)
         }
 
         session.commitConfiguration()
     }
     
-    internal func bestDevice(in position: AVCaptureDevice.Position, discoverySession: AVCaptureDevice.DiscoverySession) -> AVCaptureDevice? {
-        
+    internal func bestDevice(in position: AVCaptureDevice.Position) -> AVCaptureDevice? {
+        let captureDeviceTypes: [AVCaptureDevice.DeviceType] = [.builtInTrueDepthCamera, .builtInDualCamera, .builtInWideAngleCamera]
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: captureDeviceTypes, mediaType: .video, position: position)
         let devices = discoverySession.devices
+        
         guard !devices.isEmpty else { return nil }
         
         let cameraDevice = position == .unspecified ? devices.first : devices.first(where: { device in device.position == position })
@@ -182,7 +198,6 @@ extension TCBBarcodeScanner {
     public func previewLayer(withFrame frame: CGRect, videoGravity: AVLayerVideoGravity = .resizeAspectFill, videoOrientation: AVCaptureVideoOrientation = .portrait, isVideoMirrored: Bool = false, isVideoStabilized: AVCaptureVideoStabilizationMode = .auto) -> AVCaptureVideoPreviewLayer! {
         
         guard let session = session, session.inputs.count > 0 else { return nil } // no active session
-        // guard let metadataOutput = session.outputs.first as? AVCaptureMetadataOutput else { return nil }
         guard let captureOutput = outputs(forType: AVCaptureMetadataOutput.self, in: session.outputs) as? AVCaptureMetadataOutput else { return nil }
 
         if previewLayer == nil { // create preview layer
@@ -203,7 +218,7 @@ extension TCBBarcodeScanner {
             if videoConnection.isVideoMirroringSupported && !videoConnection.automaticallyAdjustsVideoMirroring {
                 videoConnection.isVideoMirrored = isVideoMirrored
             }
-            
+
             // set preferred video stabilization mode -- if video stabilization is supported
             if videoConnection.isVideoStabilizationSupported {
                 videoConnection.preferredVideoStabilizationMode = isVideoStabilized
@@ -229,9 +244,7 @@ extension TCBBarcodeScanner {
     }
     
     /// Start session and start scanning
-    public func start(forCaptureType type: TCBBarcodeScanner.TCBBarcodeCaptureType = .barcode) {
-        captureType = type
-        
+    public func start() {
         if let _ = session {
             session.startRunning()
         }

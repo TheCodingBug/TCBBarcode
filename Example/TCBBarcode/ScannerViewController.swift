@@ -25,7 +25,8 @@ class ScannerViewController: UIViewController {
         let scannerSize = TCBBarcodeScannerView.scannerFrameSizeFor(previewFrameSize: previewSize)
         let scannerFrame = CGRect(x: 20, y: 80, width: scannerSize.width, height: scannerSize.height)
         
-        scannerView = TCBBarcodeScannerView.instance(frame: scannerFrame, delegate: self)
+        //scannerView = TCBBarcodeScannerView.instance(frame: scannerFrame, delegate: self, forCaptureType: .barcode)
+        scannerView = TCBBarcodeScannerView.instance(frame: scannerFrame, delegate: self, forCaptureType: .photo)
         view.addSubview(scannerView)
     }
     
@@ -39,14 +40,11 @@ class ScannerViewController: UIViewController {
     }
     
     @IBAction func detectTypeControl(_ sender: UISegmentedControl) {
-        
         scannerView.detectType = TCBBarcodeScannerView.CodeDetectType(rawValue: sender.selectedSegmentIndex) ?? .default
     }
     
     @IBAction func scanButton(_ sender: Any) {
-        
-        scannerView.scan(forCaptureType: .barcode)
-//        scannerView.scan(forCaptureType: .photo)
+        scannerView.scan()
     }
     
     @IBAction func captureButton(_ sender: Any) {
@@ -80,11 +78,14 @@ extension ScannerViewController: TCBBarcodePhotoScannerViewDelegate {
     }
     
     func scanner(didFinishProcessingPhotoForPhotoScanner scanner: TCBBarcodeScanner, photo: UIImage?, error: Error?) {
+        print("didFinishCaptureForPhotoScanner photo: \(photo) -- error: ", error)
+        
         guard let photo = photo else { return }
         UIImageWriteToSavedPhotosAlbum(photo, self, #selector(saveImage(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
     func scanner(didFinishCaptureForPhotoScanner scanner: TCBBarcodeScanner, error: Error?) {
+        print("didFinishCaptureForPhotoScanner error: ", error)
         captureButton.isEnabled = true
     }
 }
