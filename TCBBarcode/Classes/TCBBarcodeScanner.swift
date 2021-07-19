@@ -72,20 +72,22 @@ public class TCBBarcodeScanner: NSObject {
         super.init()
     }
     
-    convenience public init(supportedTypes types: [AVMetadataObject.ObjectType] = availableTypes, playSoundOnSuccess play: Bool = true, delegate d: TCBBarcodeScannerDelegate!) {
+    convenience public init(supportedTypes types: [AVMetadataObject.ObjectType] = availableTypes, position: AVCaptureDevice.Position = .unspecified, playSoundOnSuccess play: Bool = true, delegate d: TCBBarcodeScannerDelegate!) {
         self.init()
         
         supportedTypes = types
         playSound = play
         delegate = d
         
-        setupSession()
+        setupSession(position: position)
     }
     
-    internal func setupSession() {
-
-        guard let captureDevice = AVCaptureDevice.default(for: .video) else {
-            let error = TCBBarcodeError.createCustomError(errorMessage: "Capture device not found")
+    internal func setupSession(position: AVCaptureDevice.Position) {
+        let captureDeviceTypes: [AVCaptureDevice.DeviceType] = [.builtInTrueDepthCamera, .builtInDualCamera, .builtInWideAngleCamera]
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: captureDeviceTypes, mediaType: .video, position: position)
+        
+        guard let captureDevice = bestDevice(in: position, discoverySession: discoverySession) else {
+            let error = TCBBarcodeError.createCustomError(errorMessage: "Missing capture devices")
             delegate.scanner(scanner: self, setupDidFail: error)
             return
         }
@@ -119,6 +121,14 @@ public class TCBBarcodeScanner: NSObject {
         
         session.commitConfiguration()
     }
+    
+    internal func bestDevice(in position: AVCaptureDevice.Position, discoverySession: AVCaptureDevice.DiscoverySession) -> AVCaptureDevice? {
+        let devices = discoverySession.devices
+        guard !devices.isEmpty else { return nil }
+        guard let captureDevice = devices.first(where: { device in device.position == position }) else { return nil }
+        
+        return captureDevice
+    }
 }
 
 // MARK: - Controls
@@ -136,7 +146,7 @@ extension TCBBarcodeScanner {
                 
         previewLayer.frame = frame
         previewLayer.videoGravity = videoGravity
-
+        
         // add point of interest
         let rectOfInterest = previewLayer.metadataOutputRectConverted(fromLayerRect: frame)
         metadataOutput.rectOfInterest = rectOfInterest
@@ -157,7 +167,6 @@ extension TCBBarcodeScanner {
     
     /// Start session and start scanning
     public func start() {
-        
         if let _ = session {
             session.startRunning()
         }
@@ -165,7 +174,6 @@ extension TCBBarcodeScanner {
     
     /// Stop scanning
     public func stop() {
-        
         if let _ = session {
             session.stopRunning()
         }
@@ -173,7 +181,6 @@ extension TCBBarcodeScanner {
     
     /// Stop scanning and removes session
     public func purge() {
-        
         if let _ = session {
             session.stopRunning()
             session = nil
