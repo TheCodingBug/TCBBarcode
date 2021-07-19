@@ -317,11 +317,6 @@ extension TCBBarcodeScanner: AVCapturePhotoCaptureDelegate {
     // This callback fires resolvedSettings.expectedPhotoCount number of times for a given capture request. Note that the photo parameter is always non nil, even if an error is returned. The delivered AVCapturePhoto's rawPhoto property can be queried to know if it's a RAW image or processed image.
     public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
 
-        if playSound {
-            let soundID = SystemSoundID(kSystemSoundID_Vibrate)
-            AudioServicesPlayAlertSound(soundID)
-        }
-        
         guard let delegate = delegate as? TCBBarcodePhotoScannerDelegate else { return }
         guard let imageData = photo.fileDataRepresentation(),
               let image = UIImage(data: imageData, scale: UIScreen.main.scale)
@@ -329,6 +324,11 @@ extension TCBBarcodeScanner: AVCapturePhotoCaptureDelegate {
             let cError = TCBBarcodeError.createCustomError(errorMessage: "Can't process capture photo")
             delegate.scanner(didFinishProcessingPhotoForPhotoScanner: self, photo: nil, error: cError)
             return }
+        
+        if playSound {
+            let soundID = SystemSoundID(kSystemSoundID_Vibrate)
+            AudioServicesPlayAlertSound(soundID)
+        }
         
         delegate.scanner(didFinishProcessingPhotoForPhotoScanner: self, photo: image, error: error)
     }

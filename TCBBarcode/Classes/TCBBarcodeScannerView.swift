@@ -9,10 +9,26 @@ import Foundation
 import AVFoundation
 
 public protocol TCBBarcodeScannerViewDelegate: NSObjectProtocol {
-    
     func scannerView(scannerView: TCBBarcodeScannerView, setupDidFail error: Error)
     func scannerView(scannerView: TCBBarcodeScannerView, didOutputCode code: String, codeType type: String)
+}
+
+public protocol TCBBarcodePhotoScannerViewDelegate: TCBBarcodeScannerViewDelegate {
     
+    /// This callback is always delivered first for a particular capture request. It is delivered as soon as possible after you call -capturePhotoWithSettings:delegate:, so you can know what to expect in the remainder of your callbacks.
+    func scanner(willBeginCaptureForPhotoScanner scanner: TCBBarcodeScanner)
+    
+    /// The timing of this callback is analogous to AVCaptureStillImageOutput's capturingStillImage property changing from NO to YES. The callback is delivered right after the shutter sound is heard (note that shutter sounds are suppressed when Live Photos are being captured).
+    func scanner(willCaptureForPhotoScanner scanner: TCBBarcodeScanner)
+    
+    /// The timing of this callback is analogous to AVCaptureStillImageOutput's capturingStillImage property changing from YES to NO.
+    func scanner(didCapturePhotoForPhotoScanner scanner: TCBBarcodeScanner)
+    
+    /// This callback fires resolvedSettings.expectedPhotoCount number of times for a given capture request. Note that the photo parameter is always non nil, even if an error is returned. The delivered AVCapturePhoto's rawPhoto property can be queried to know if it's a RAW image or processed image.
+    func scanner(didFinishProcessingPhotoForPhotoScanner scanner: TCBBarcodeScanner, photo: UIImage?, error: Error?)
+    
+    /// This callback always fires last and when it does, you may clean up any state relating to this photo capture.
+    func scanner(didFinishCaptureForPhotoScanner scanner: TCBBarcodeScanner, error: Error?)
 }
 
 public class TCBBarcodeScannerView: UIView {
@@ -72,7 +88,7 @@ public class TCBBarcodeScannerView: UIView {
     fileprivate func setup(frame: CGRect, delegate d: TCBBarcodeScannerViewDelegate!, supportedTypes types: [AVMetadataObject.ObjectType] = TCBBarcodeScanner.availableTypes, playSoundOnSuccess play: Bool = true) {
         
         delegate = d
-        scanner = TCBBarcodeScanner(supportedTypes: types, playSoundOnSuccess: play, delegate: self)
+        scanner = TCBBarcodeScanner(supportedTypes: types, position: .back, playSoundOnSuccess: play, delegate: self)
         
         let previewFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height - TCBBarcodeScannerView.codeLblHeight)
         if let previewLayer = scanner.previewLayer(withFrame: previewFrame) {
@@ -190,6 +206,37 @@ extension TCBBarcodeScannerView: TCBBarcodeScannerDelegate {
     }
 }
 
+// MARK: - TCBBarcodePhotoScannerDelegate
+
+extension TCBBarcodeScannerView: TCBBarcodePhotoScannerDelegate {
+    
+    public func scanner(willBeginCaptureForPhotoScanner scanner: TCBBarcodeScanner) {
+        guard let delegate = delegate as? TCBBarcodePhotoScannerViewDelegate else { return }
+        delegate.scanner(willBeginCaptureForPhotoScanner: scanner)
+    }
+    
+    public func scanner(willCaptureForPhotoScanner scanner: TCBBarcodeScanner) {
+        guard let delegate = delegate as? TCBBarcodePhotoScannerViewDelegate else { return }
+        delegate.scanner(willCaptureForPhotoScanner: scanner)
+    }
+
+    public func scanner(didCapturePhotoForPhotoScanner scanner: TCBBarcodeScanner) {
+        stop()
+        guard let delegate = delegate as? TCBBarcodePhotoScannerViewDelegate else { return }
+        delegate.scanner(didCapturePhotoForPhotoScanner: scanner)
+    }
+    
+    public func scanner(didFinishProcessingPhotoForPhotoScanner scanner: TCBBarcodeScanner, photo: UIImage?, error: Error?) {
+        guard let delegate = delegate as? TCBBarcodePhotoScannerViewDelegate else { return }
+        delegate.scanner(didFinishProcessingPhotoForPhotoScanner: scanner, photo: photo, error: error)
+    }
+    
+    public func scanner(didFinishCaptureForPhotoScanner scanner: TCBBarcodeScanner, error: Error?) {
+        guard let delegate = delegate as? TCBBarcodePhotoScannerViewDelegate else { return }
+        delegate.scanner(didFinishCaptureForPhotoScanner: scanner, error: error)
+    }
+}
+
 // MARK: - Controls
 
 extension TCBBarcodeScannerView {
@@ -199,9 +246,13 @@ extension TCBBarcodeScannerView {
         scanner.updateScanArea(frame: frame)
     }
     
-    public func scan() {
+    public func scan(forCaptureType type: TCBBarcodeScanner.TCBBarcodeCaptureType = .barcode) {
         resetDetectView()
-        scanner.start()
+        scanner.start(forCaptureType: type)
+    }
+    
+    public func capture() {
+        scanner.capturePhoto(flashMode: .on)
     }
     
     public func stop() {
