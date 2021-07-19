@@ -83,14 +83,8 @@ public class TCBBarcodeGenerator: NSObject {
     
     // MARK: - Initializers
     
-    private override init() {
+    public override init() {
         super.init()
-    }
-    
-    convenience public init(transform t: CGAffineTransform = CGAffineTransform(scaleX: UIScreen.main.scale, y: UIScreen.main.scale)) {
-        self.init()
-        
-        transform = t
     }
     
     // MARK: - Helpers
@@ -172,11 +166,12 @@ public class TCBBarcodeGenerator: NSObject {
 
 // MARK: - Public Controls
 extension TCBBarcodeGenerator {
-    public func generateCode(forType type: TCBBarcodeGeneratorType, source: String) -> TCBBarcodeObject? {
+    public func generateCode(forType type: TCBBarcodeGeneratorType, source: String, transform t: CGAffineTransform = CGAffineTransform(scaleX: UIScreen.main.scale, y: UIScreen.main.scale)) -> TCBBarcodeObject? {
         
         guard !source.isEmpty, let data = source.data(using: .utf8) else { return nil }
         guard let output = codeDescriptor(forType: type, data: data) else { return nil }
         
+        transform = t
         return TCBBarcodeObject(barcode: output, transform: transform)
     }
 }
